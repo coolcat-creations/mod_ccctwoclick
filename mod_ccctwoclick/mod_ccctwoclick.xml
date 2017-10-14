@@ -3,7 +3,7 @@
 	<name>mod_ccctwoclick</name>
 	<creationDate>06/2017</creationDate>
 	<author>Elisa Foltyn</author>
-	<version>1.0.1</version>
+	<version>1.0.0</version>
 	<copyright>COOLCAT creations, Nürnberg - www.coolcat-creations.com</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>MOD_CCCTWOCLICK_DESC</description>
@@ -227,6 +227,6 @@
 
 	<updateservers>
 		<server type="extension" name="mod_ccctwoclick Update Site">https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/master/manifest.xml</server>
-	</updateservers>
+	</updateservers> 
 
 </extension>
