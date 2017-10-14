@@ -9,7 +9,7 @@
 	<files>
 		<filename>mod_ccctwoclick.xml</filename>
 		<filename module="mod_ccctwoclick">mod_ccctwoclick.php</filename>
-		<filename>tmpl/default.php</filename>
+		<folder>tmpl</folder>
 		<folder>language</folder>
 	</files>
 	<media destination="mod_ccctwoclick" folder="media">
