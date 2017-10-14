@@ -5,6 +5,7 @@
 	<author>Elisa Foltyn</author>
 	<version>1.0.1</version>
 	<copyright>COOLCAT creations, Nürnberg - www.coolcat-creations.com</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>MOD_CCCTWOCLICK_DESC</description>
 	<files>
 		<filename>mod_ccctwoclick.xml</filename>
