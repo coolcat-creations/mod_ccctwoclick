@@ -39,7 +39,8 @@
 
 					content[0].innerHTML = "";
 					content[0].appendChild( iframe );
-					content[0].style.background = null;
+					content[0].style.backgroundImage = null;
+					content[0].style.backgroundRepeat = null;
 					content[0].style.backgroundSize = null;
 
 					enablebtn[0].style.display = 'none';
@@ -55,6 +56,9 @@
 					disablebtn[0].style.display = 'none';
 					enablebtn[0].style.display = 'inline';
 					contentbefore[0].style.display = 'block';
+					content[0].style.backgroundImage = content[0].dataset.background;
+					content[0].style.backgroundRepeat = 'no-repeat';
+					content[0].style.backgroundSize = content[0].dataset.backgroundsize;
 
 				} );
 
