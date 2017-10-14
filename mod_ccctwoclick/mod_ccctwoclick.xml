@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.8.0" client="site" method="upgrade">
+	<name>mod_ccctwoclick</name>
+	<creationDate>06/2017</creationDate>
+	<author>Elisa Foltyn</author>
+	<version>1.0.0</version>
+	<copyright>COOLCAT creations, Nürnberg - www.coolcat-creations.com</copyright>
+	<description>MOD_CCCTWOCLICK_DESC</description>
+	<files>
+		<filename>mod_ccctwoclick.xml</filename>
+		<filename module="mod_ccctwoclick">mod_ccctwoclick.php</filename>
+		<filename>tmpl/default.php</filename>
+		<folder>language</folder>
+	</files>
+	<media destination="mod_ccctwoclick" folder="media">
+		<folder>js</folder>
+		<folder>css</folder>
+	</media>
+	<config>
+		<fields name="params">
+			<fieldset
+					name="options"
+					label="MOD_CCCTWOCLICK_OPTIONS">
+
+				<field
+						name="donationcode"
+						label="MOD_CCCTWOCLICK_DONATE"
+						type="spacer"
+						showon="hidedonation:show"/>
+
+
+				<field
+						name="beforeclicksettings"
+						label="MOD_CCCTWOCLICK_BEFORECLICK_SETTINGS"
+						type="spacer"
+				/>
+
+				<field
+						name="disabledimage"
+						label="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_LBL"
+						desc="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_DESC"
+						type="media"
+						default=""
+				/>
+
+
+				<field
+						name="backgroundsize"
+						label="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_LBL"
+						type="list"
+						default="auto"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+						<option value="">MOD_CCCTWOCLICK_SELECT</option>
+						<option value="auto">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_AUTO</option>
+						<option value="cover">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_COVER</option>
+						<option value="contain">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_CONTAIN</option>
+				</field>
+
+				<field
+						name="contentbeforereplacement"
+						label="MOD_CCCTWOCLICK_DISABLED_CONTENT_LBL"
+						desc="MOD_CCCTWOCLICK_DISABLED_CONTENT_DESC"
+						type="textarea"
+						cols="50"
+						rows="10"
+						default=""
+				/>
+
+				<field
+						name="buttontxtreveal"
+						label="MOD_CCCTWOCLICK_BTN_REVEAL"
+						type="text"
+						default=""
+
+				/>
+
+				<field
+						name="buttontxtrevealclass"
+						label="MOD_CCCTWOCLICK_BTN_REVEAL_CLASS"
+						type="text"
+						default="btn btn-primary"
+
+				/>
+
+
+				<field
+						name="afterclicksettings"
+						label="MOD_CCCTWOCLICK_AFTERCLICK_SETTINGS"
+						type="spacer"
+				/>
+
+				<field
+						name="buttontxtdisable"
+						label="MOD_CCCTWOCLICK_BTN_DISABLE"
+						type="text"
+						default=""
+				/>
+
+
+				<field
+						name="buttontxtdisableclass"
+						label="MOD_CCCTWOCLICK_BTN_DISABLE_CLASS"
+						type="text"
+						default="btn btn-secondary"
+				/>
+
+				<field
+						name="iframesettings"
+						label="MOD_CCCTWOCLICK_IFRAME_SETTINGS"
+						type="spacer"
+				/>
+
+				<field
+						name="sourceurl"
+						label="MOD_CCCTWOCLICK_SOURCE_URL"
+						type="text"
+						default=""
+						filter="none"
+				/>
+
+				<field
+						name="iframewidth"
+						label="MOD_CCCTWOCLICK_IFRAMEWIDTH_LBL"
+						type="text"
+						default="100%"
+				/>
+
+				<field
+						name="iframeheight"
+						label="MOD_CCCTWOCLICK_IFRAMEHEIGHT_LBL"
+						type="text"
+						default="300px"
+
+				/>
+
+				<field
+						name="frameborder"
+						label="MOD_CCCTWOCLICK_IFRAMEFRAMEBORDER_LBL"
+						type="number"
+						default="0"
+				/>
+
+				<field
+						name="allowfullscreen"
+						label="MOD_CCCTWOCLICK_IFRAMEFULLSCREEN_LBL"
+						type="list"
+						default="true"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+						<option value="">MOD_CCCTWOCLICK_SELECT</option>
+						<option value="true">JYES</option>
+						<option value="8">JNO</option>
+				</field>
+
+				<field
+						name="allowtransparency"
+						label="MOD_CCCTWOCLICK_IFRAMETRANSPARENCY_LBL"
+						type="list"
+						default="true"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+						<option value="">MOD_CCCTWOCLICK_SELECT</option>
+						<option value="true">JYES</option>
+						<option value="false">JNO</option>
+				</field>
+
+				<field
+						name="scrolling"
+						label="MOD_CCCTWOCLICK_IFRAMESCROLLING_LBL"
+						type="list"
+						default="no"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+						<option value="">MOD_CCCTWOCLICK_SELECT</option>
+						<option value="yes">JYES</option>
+						<option value="no">JNO</option>
+				</field>
+
+				<field
+						name="stylesheet"
+						label="MOD_CCCTWOCLICK_STYLESHEET_LBL"
+						type="list"
+						default="yes"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+						<option value="">MOD_CCCTWOCLICK_SELECT</option>
+						<option value="yes">JYES</option>
+						<option value="no">JNO</option>
+				</field>
+
+			</fieldset>
+
+			<fieldset name="advanced">
+
+				<field
+						name="hidedonation"
+						label="MOD_CCCTWOCLICK_HIDEDONATION_LBL"
+						type="radio"
+						default="show"
+				>
+						<option value="show">JNO</option>
+						<option value="hide">JYES</option>
+				</field>
+
+				<field
+						name="moduleclass_sfx"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						type="textarea"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+						rows="3"
+				/>
+
+			</fieldset>
+		</fields>
+
+
+	</config>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_ccctwoclick.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_ccctwoclick.sys.ini</language>
+		<language tag="de-DE">de-DE/de-DE.mod_ccctwoclick.ini</language>
+		<language tag="de-DE">de-DE/de-DE.mod_ccctwoclick.sys.ini</language>
+	</languages>
+</extension>
