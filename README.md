@@ -7,6 +7,8 @@ Due to EU privacy law it might be obligatory to let the user decide if an extern
 In this module you can setup a specific iframe source and load it only,
 when the user gives the permission by clicking a button.
 
+![demo](https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/master/demo.gif)
+
 ## Available Settings
 ### Content before click
 
