@@ -223,4 +223,9 @@
 		<language tag="de-DE">de-DE/de-DE.mod_ccctwoclick.ini</language>
 		<language tag="de-DE">de-DE/de-DE.mod_ccctwoclick.sys.ini</language>
 	</languages>
+
+	<updateservers>
+		<server type="extension" name="mod_ccctwoclick Update Site">https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/master/manifest.xml</server>
+	</updateservers>
+
 </extension>
