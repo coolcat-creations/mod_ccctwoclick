@@ -10,61 +10,55 @@
 
 	document.addEventListener('DOMContentLoaded', function() {
 
-		(function() {
+		var ccctwoclickcontainer = document.querySelectorAll('.ccctwoclickcontainer');
 
-			var ccctwoclickcontainer = document.querySelectorAll( ".ccctwoclickcontainer" );
+		for (var i = 0; i < ccctwoclickcontainer.length; i++) {
 
-			for (var i = 0; i < ccctwoclickcontainer.length; i++) {
+			var self = ccctwoclickcontainer[i];
+			var content = self.querySelector('.ccctwoclick');
+			var enablebtn = self.querySelector('.ccctwoclickreveal');
+			var disablebtn = self.querySelector('.ccctwoclickdisable');
+			var contentbefore = self.querySelector('.contentbefore');
 
-				var content = ccctwoclickcontainer[i].querySelectorAll( ".ccctwoclick" );
-				var enablebtn = ccctwoclickcontainer[i].querySelectorAll( ".ccctwoclickreveal" );
-				var disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable");
-				var contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore");
+			enablebtn.addEventListener('click', function() {
 
-				enablebtn[0].addEventListener( "click", function() {
+				var iframe = document.createElement('iframe');
 
-					var iframe = document.createElement( "iframe" );
+				iframe.setAttribute('frameborder', '0');
+				iframe.setAttribute('allowfullscreen', true);
+				iframe.setAttribute('allowtransparency', true);
+				iframe.setAttribute('scrolling', 'no');
+				iframe.setAttribute('title', 'fb:page Facebook Social Plugin');
+				iframe.setAttribute('name', 'f2f966e5973af');
+				iframe.setAttribute('width', content.dataset.width);
+				iframe.setAttribute('height', content.dataset.height);
+				iframe.setAttribute('src', content.dataset.source);
 
-					iframe.setAttribute( 'frameborder', '0' );
-					iframe.setAttribute( 'allowfullscreen', 'true' );
-					iframe.setAttribute( 'allowtransparency', 'true' );
-					iframe.setAttribute( 'scrolling', 'no' );
-					iframe.setAttribute( 'title', 'fb:page Facebook Social Plugin');
+				content.innerHTML = '';
+				content.appendChild(iframe);
+				content.style.backgroundImage = null;
+				content.style.backgroundRepeat = null;
+				content.style.backgroundSize = null;
 
-					iframe.setAttribute( 'name', 'f2f966e5973af' );
-					iframe.setAttribute( 'width', content[0].dataset.width );
-					iframe.setAttribute( 'height', content[0].dataset.height );
+				enablebtn.style.display = 'none';
+				contentbefore.style.display = 'none';
 
-					iframe.setAttribute( 'src', content[0].dataset.source );
+				disablebtn.style.display = 'inline';
+				disablebtn.classList.toggle('disablecontent');
+			});
 
-					content[0].innerHTML = "";
-					content[0].appendChild( iframe );
-					content[0].style.backgroundImage = null;
-					content[0].style.backgroundRepeat = null;
-					content[0].style.backgroundSize = null;
+			disablebtn.addEventListener('click', function() {
+				content.innerHTML = '';
+				disablebtn.style.display = 'none';
+				enablebtn.style.display = 'inline';
+				contentbefore.style.display = 'block';
+				content.style.backgroundImage = content.dataset.background;
+				content.style.backgroundRepeat = 'no-repeat';
+				content.style.backgroundSize = content.dataset.backgroundsize;
+			});
 
-					enablebtn[0].style.display = 'none';
-					contentbefore[0].style.display = 'none';
+		};
 
-					disablebtn[0].style.display = 'inline';
-					disablebtn[0].classList.toggle('disablecontent');
-
-				} );
-
-				disablebtn[0].addEventListener( "click", function() {
-					content[0].innerHTML = "";
-					disablebtn[0].style.display = 'none';
-					enablebtn[0].style.display = 'inline';
-					contentbefore[0].style.display = 'block';
-					content[0].style.backgroundImage = content[0].dataset.background;
-					content[0].style.backgroundRepeat = 'no-repeat';
-					content[0].style.backgroundSize = content[0].dataset.backgroundsize;
-
-				} );
-
-			};
-
-		} )();
 	});
 
 })();
