@@ -29,8 +29,6 @@ endif;
 		<?php echo $contentBefore; ?>
     </div>
 
-    <a class="btn btn-primary ccctwoclickreveal"> <?php echo JTEXT::_($btntxtReveal); ?></a>
-    <a class="btn btn-secondary ccctwoclickdisable" style="display:none;"><?php echo JTEXT::_($btntxtDisable); ?></a>
+    <a class="btn btn-primary ccctwoclickreveal"> <?php echo JText::_($btntxtReveal); ?></a>
+    <a class="btn btn-secondary ccctwoclickdisable" style="display:none;"><?php echo JText::_($btntxtDisable); ?></a>
 </div>
-
-
