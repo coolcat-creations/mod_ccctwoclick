@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+// Load polyfills for older IE
+JHtml::_('behavior.polyfill', array('event'), 'lte IE 11');
 
 JHtml::_('script', 'media/mod_ccctwoclick/js/script.js');
 
