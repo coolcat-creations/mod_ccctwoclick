@@ -32,6 +32,11 @@ Button Class: Add here a Button Class if needed
 
 ### Iframe Settings:
 IFrame Source: Fill this input with the iframe link
+Information: You get the exact iframe Link if you:
+  Examples:
+  Facebook: Get the Like Box Code and take just the URL from the provided iframe HTML
+  Google Maps: Search the Location, click on share, then on embed, and take just the URL from the provided iframe HTML
+  Youtube: Search ypur Video, click on share, then on embed, and take just the URL from the provided iframe HTML
 
 Width: Set the iframe width here in px or %
 Height: Set the iframe height here in px or %
