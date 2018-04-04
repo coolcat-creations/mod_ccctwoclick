@@ -20,10 +20,11 @@ $isrc = $params->get('sourceurl', '');
 $contentBefore = $params->get('contentbeforereplacement', '');
 $btntxtReveal = $params->get('buttontxtreveal', 'MOD_CCCTWOCLICK_BTN_REVEAL_TEXT');
 $btntxtDisable = $params->get('buttontxtdisable', 'MOD_CCCTWOCLICK_BTN_DISABLE_TEXT');
-$btnclassDisable = $params->get('buttontxtrevealclass', '');
-$btnclassEnable = $params->get('buttontxtdisableclass', '');
+$btnclassDisable = $params->get('buttontxtrevealclass', 'Click to disable');
+$btnclassEnable = $params->get('buttontxtdisableclass', 'Click to disable');
 $disabledimage = $params->get('disabledimage', '');
 $backgroundsize = $params->get('backgroundsize', '');
 $stylesheet = $params->get('stylesheet', "yes");
+$moduleId = $module->id;
 
 require JModuleHelper::getLayoutPath('mod_ccctwoclick', $params->get('layout', 'default'));
