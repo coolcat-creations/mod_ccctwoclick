@@ -23,7 +23,7 @@ $btntxtDisable = $params->get('buttontxtdisable', 'MOD_CCCTWOCLICK_BTN_DISABLE_T
 $btnclassDisable = $params->get('buttontxtrevealclass', 'Click to disable');
 $btnclassEnable = $params->get('buttontxtdisableclass', 'Click to disable');
 $disabledimage = $params->get('disabledimage', '');
-$backgroundsize = $params->get('backgroundsize', '');
+$backgroundsize = $params->get('backgroundsize', 'contain');
 $stylesheet = $params->get('stylesheet', "yes");
 $moduleId = $module->id;
 
