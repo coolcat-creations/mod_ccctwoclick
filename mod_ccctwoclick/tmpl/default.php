@@ -64,8 +64,8 @@ defined('_JEXEC') or die; ?>
 
 <div class="ccctwoclickcontainer-<?php echo $moduleId; ?> <?php echo $moduleclass_sfx; ?>" style="width:<?php echo $iwidth; ?>px; margin:0pt auto;">
 
-	<div class="ccctwoclick-<?php echo $moduleId; ?>" data-source="<?php echo $isrc; ?>" data-width="<?php echo $iwidth; ?>" data-height="<?php echo $iheight; ?>"
-	     style="width:<?php echo $iwidth; ?>px; height:<?php echo $iheight; ?>px; <?php if ($disabledimage) : ?>background:url(<?php echo $disabledimage; ?>) no-repeat; background-size:contain;<?php endif;?>">
+	<div class="ccctc ccctwoclick-<?php echo $moduleId; ?>" data-source="<?php echo $isrc; ?>" data-width="<?php echo $iwidth; ?>" data-height="<?php echo $iheight; ?>"
+	     style="width:<?php echo $iwidth; ?>; height:<?php echo $iheight; ?>; <?php if ($disabledimage) : ?>background:url(<?php echo $disabledimage; ?>) no-repeat; background-size:contain;<?php endif;?>">
 	</div>
 
 	<div class="contentbefore-<?php echo $moduleId; ?>">
