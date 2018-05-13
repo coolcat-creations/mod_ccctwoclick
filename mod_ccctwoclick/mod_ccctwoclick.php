@@ -26,5 +26,6 @@ $disabledimage = $params->get('disabledimage', '');
 $backgroundsize = $params->get('backgroundsize', 'contain');
 $stylesheet = $params->get('stylesheet', "yes");
 $moduleId = $module->id;
+$moduleclass_sfx = $params->get('moduleclass_sfx', '');
 
 require JModuleHelper::getLayoutPath('mod_ccctwoclick', $params->get('layout', 'default'));
