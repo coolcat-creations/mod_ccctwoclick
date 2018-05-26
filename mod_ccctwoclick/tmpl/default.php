@@ -2,18 +2,31 @@
 // No direct access
 defined('_JEXEC') or die;
 
+
+
+$contentBefore = '<div class="contentbefore-' . $moduleId . '">' . $contentBefore .'</div>';
+$contentBeforeCenter = '<div class="contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore .'</div>';
+
+$contentAfter = '<div class="contentafter-' . $moduleId . '" style="display:none;">' . $contentAfter .'</div>';
+
+$btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . JText::_($btntxtReveal) .'</a>';
+$btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . JText::_($btntxtReveal) .'</a>';
+
+$btnDisable = '<a class="' . $btnclassDisable . '  ccctwoclickdisable-' . $moduleId . '" style="display:none;">' . JText::_($btntxtDisable) .'</a>';
+
+
 // if revealbutton or text is centered
 
 $centered = "";
 if ($contentbeforepos == 'center') :
 	if ($contentBefore != '' || !empty($contentBefore)) :
-	$centered .=  '<div class="contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore . '</div>';
+	$centered .=  $contentBeforeCenter;
 	endif;
-	endif;
+endif;
 
-	if ($btnrevpos == 'center') :
-	$centered .=  '<a class="' . $btnclassDisable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . JText::_($btntxtReveal) . '</a>';
-	endif;
+if ($btnrevpos == 'center') :
+	$centered .=  $btnRevealCenter;
+endif;
 ?>
 
 
@@ -69,7 +82,6 @@ if ($contentbeforepos == 'center') :
 					document.getElementById("ccctc-<?php echo $moduleId; ?>").addEventListener("click",function(e) {
 						// e.target was the clicked element
 						if (e.target && e.target.matches("a.ccctwoclickreveal-<?php echo $moduleId; ?>")) {
-							console.log("Anchor element clicked!");
 							enableContent();
 						}
 					});
@@ -77,9 +89,6 @@ if ($contentbeforepos == 'center') :
 					enablebtn[0].addEventListener("click", function (event) {
 						enableContent();
 					});
-
-
-
 
 					disablebtn[0].addEventListener("click", function () {
 						content[0].innerHTML = "";
@@ -109,33 +118,29 @@ if ($contentbeforepos == 'center') :
 	})();
 </script>
 
+
 <div class="ccctwoclickcontainer-<?php echo $moduleId; ?> <?php echo $moduleclass_sfx; ?>"
      style="width:<?php echo $iwidth; ?>; margin:0 auto;">
 
 
 	<?php if ($contentbeforepos == 'top') : ?>
 		<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
-			<div class="contentbefore-<?php echo $moduleId; ?>">
 				<?php echo $contentBefore; ?>
-			</div>
 		<?php endif; ?>
 	<?php endif; ?>
 
 	<?php if ($contentafterpos == 'top') : ?>
 		<?php if ($contentAfter != '' || !empty($contentAfter)) : ?>
-			<div class="contentafter-<?php echo $moduleId; ?>" style="display:none;">
-				<?php echo $contentAfter; ?>
-			</div>
+			<?php echo $contentAfter; ?>
 		<?php endif; ?>
 	<?php endif; ?>
 
 	<?php if ($btndispos == 'top') : ?>
-		<a class="<?php echo $btnclassDisable; ?>  ccctwoclickdisable-<?php echo $moduleId; ?>"
-		   style="display:none;"><?php echo JText::_($btntxtDisable); ?></a>
+		<?php echo $btnDisable; ?>
 	<?php endif; ?>
 
 	<?php if ($btnrevpos == 'top') : ?>
-		<a class="<?php echo $btnclassEnable; ?> ccctwoclickreveal-<?php echo $moduleId; ?>"><?php echo JText::_($btntxtReveal); ?></a>
+		<?php echo $btnReveal; ?>
 	<?php endif; ?>
 
 	<div id="ccctc-<?php echo $moduleId; ?>"
@@ -153,15 +158,11 @@ if ($contentbeforepos == 'center') :
 			<div style="position:relative; <?php echo 'width:' . $iwidth . '; height:' . $iheight . ';'; ?> text-align: center;">
 				<?php if ($contentbeforepos == 'center') : ?>
 					<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
-						<div class="contentbefore-<?php echo $moduleId; ?>" style="position:relative; top:50%;">
-							<?php echo $contentBefore; ?>
-						</div>
+						<?php echo $contentBeforeCenter; ?>
 					<?php endif; ?>
 				<?php endif; ?>
 				<?php if ($btnrevpos == 'center') : ?>
-					<a class="<?php echo $btnclassEnable; ?> ccctwoclickreveal-<?php echo $moduleId; ?>"
-					   style="position:relative; top:50%;">
-						<?php echo JText::_($btntxtReveal); ?></a>
+					<?php echo $btnRevealCenter; ?>
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
@@ -170,28 +171,22 @@ if ($contentbeforepos == 'center') :
 
 	<?php if ($contentbeforepos == 'bottom') : ?>
 		<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
-			<div class="contentbefore-<?php echo $moduleId; ?>">
-				<?php echo $contentBefore; ?>
-			</div>
+			<?php echo $contentBefore; ?>
 		<?php endif; ?>
 	<?php endif; ?>
 
 	<?php if ($contentafterpos == 'bottom') : ?>
 		<?php if ($contentAfter != '' || !empty($contentAfter)) : ?>
-			<div class="contentafter-<?php echo $moduleId; ?>" style="display:none;">
-				<?php echo $contentAfter; ?>
-			</div>
+			<?php echo $contentAfter; ?>
 		<?php endif; ?>
 	<?php endif; ?>
 
 	<?php if ($btndispos == 'bottom') : ?>
-		<a class="<?php echo $btnclassDisable; ?>  ccctwoclickdisable-<?php echo $moduleId; ?>"
-		   style="display:none;"><?php echo JText::_($btntxtDisable); ?></a>
+		<?php echo $btnDisable; ?>
 	<?php endif; ?>
 
 	<?php if ($btnrevpos == 'bottom') :?>
-		<a class="<?php echo $btnclassEnable; ?> ccctwoclickreveal-<?php echo $moduleId; ?>">
-			<?php echo JText::_($btntxtReveal); ?></a>
+		<?php echo $btnReveal; ?>
 	<?php endif; ?>
 
 </div>
