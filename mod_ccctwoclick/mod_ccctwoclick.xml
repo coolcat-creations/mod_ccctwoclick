@@ -36,6 +36,14 @@
 				/>
 
 				<field
+						name="disabledcolor"
+						label="MOD_CCCTWOCLICK_DISABLED_BGCOLOR_LBL"
+						desc="MOD_CCCTWOCLICK_DISABLED_BGCOLOR_DESC"
+						type="color"
+						default="transparent"
+				/>
+
+				<field
 						name="disabledimage"
 						label="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_LBL"
 						desc="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_DESC"
@@ -91,6 +99,16 @@
 				/>
 
 				<field
+						name="contentafterreplacement"
+						label="MOD_CCCTWOCLICK_ENABLED_CONTENT_LBL"
+						desc="MOD_CCCTWOCLICK_ENABLED_CONTENT_DESC"
+						type="textarea"
+						cols="50"
+						rows="10"
+						default=""
+				/>
+
+				<field
 						name="buttontxtdisable"
 						label="MOD_CCCTWOCLICK_BTN_DISABLE"
 						type="text"
@@ -109,6 +127,20 @@
 						name="iframesettings"
 						label="MOD_CCCTWOCLICK_IFRAME_SETTINGS"
 						type="spacer"
+				/>
+
+				<field
+						name="iframename"
+						label="MOD_CCCTWOCLICK_IFRAMENAME_LBL"
+						type="text"
+						default="300px"
+				/>
+
+				<field
+						name="iframetitle"
+						label="MOD_CCCTWOCLICK_IFRAMETITLE_LBL"
+						type="text"
+						default="300px"
 				/>
 
 				<field
@@ -175,6 +207,62 @@
 						<option value="">MOD_CCCTWOCLICK_SELECT</option>
 						<option value="yes">JYES</option>
 						<option value="no">JNO</option>
+				</field>
+
+				<field
+						name="positionsetting"
+						label="MOD_CCCTWOCLICK_POSITION_SETTINGS"
+						type="spacer"
+				/>
+
+				<field
+						name="contentbeforepos"
+						label="MOD_CCCTWOCLICK_CONTENTBEFOREPOS_LBL"
+						type="list"
+						default="bottom"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+					<option value="">MOD_CCCTWOCLICK_SELECT</option>
+					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
+					<option value="center">MOD_CCCTWOCLICK_POS_CENTER</option>
+					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
+				</field>
+
+				<field
+						name="contentafterpos"
+						label="MOD_CCCTWOCLICK_CONTENTAFTERPOS_LBL"
+						type="list"
+						default="bottom"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+					<option value="">MOD_CCCTWOCLICK_SELECT</option>
+					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
+					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
+				</field>
+
+				<field
+						name="btnrevpos"
+						label="MOD_CCCTWOCLICK_BTNREVPOS_LBL"
+						type="list"
+						default="bottom"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+					<option value="">MOD_CCCTWOCLICK_SELECT</option>
+					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
+					<option value="center">MOD_CCCTWOCLICK_POS_CENTER</option>
+					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
+				</field>
+
+				<field
+						name="btndispos"
+						label="MOD_CCCTWOCLICK_BTNDISPOS_LBL"
+						type="list"
+						default="bottom"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+					<option value="">MOD_CCCTWOCLICK_SELECT</option>
+					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
+					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
 				</field>
 
 				<field
