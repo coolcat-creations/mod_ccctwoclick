@@ -1,8 +1,4 @@
-<?php
-// No direct access
-defined('_JEXEC') or die;
-
-?>
+<?php defined('_JEXEC') or die; ?>
 <script>
 	(function () {
 
@@ -10,82 +6,67 @@ defined('_JEXEC') or die;
 
 			(function () {
 
-				var ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer-<?php echo $moduleId; ?>");
+				var ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer");
 
 				for (var i = 0; i < ccctwoclickcontainer.length; i++) {
-
-					var enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>" + i);
-					var disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>" + i);
+					var enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>");
+					var disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>");
 
 
 					enablebtn[i].addEventListener("click", function (event) {
 						console.log(event.currentTarget.getAttribute('data-id'))
 						var iframe = document.createElement("iframe");
 						var ourCurrentId = event.currentTarget.getAttribute('data-id');
-						console.log(ourCurrentId);
+						var content = document.querySelector(".ccctwoclick-" + ourCurrentId);
+						var enablebtn = document.querySelector(".ccctwoclickreveal-" + ourCurrentId);
+						var contentbefore = document.querySelector(".contentbefore-" + ourCurrentId);
+						var contentafter = document.querySelector(".contentafter-" + ourCurrentId);
+						var disablebtn = document.querySelector(".ccctwoclickdisable-" + ourCurrentId);
 
-						var content = document.querySelector(".ccctwoclick-<?php echo $moduleId; ?>" + ourCurrentId);
-						console.log(content);
+						iframe.setAttribute('frameborder', '0');
+						iframe.setAttribute('allowfullscreen', 'true');
+						iframe.setAttribute('allowtransparency', 'true');
+						iframe.setAttribute('scrolling', 'no');
+						iframe.setAttribute('title', 'fb:page Facebook Social Plugin');
 
+						iframe.setAttribute('name', 'f2f966e5973af');
+						iframe.setAttribute('width', content.getAttribute('data-width'));
+						iframe.setAttribute('height', content.getAttribute('data-height'));
 
-						var enablebtn = document.querySelector(".ccctwoclickreveal-<?php echo $moduleId; ?>" + ourCurrentId);
-						var contentbefore = document.querySelector(".contentbefore-<?php echo $moduleId; ?>" + ourCurrentId);
-						var contentafter = document.querySelector(".contentafter-<?php echo $moduleId; ?>" + ourCurrentId);
-						var disablebtn = document.querySelector(".ccctwoclickdisable-<?php echo $moduleId; ?>" + ourCurrentId);
+						iframe.setAttribute('src', content.dataset.source);
 
-					iframe.setAttribute('frameborder', '<?php echo $frameborder; ?>');
+						content.style.display = "none";
+						content.insertAdjacentElement('beforebegin', iframe);
 
-					<?php if ($allowfullscreen != "") : ?>
-					iframe.setAttribute('allowfullscreen', '<?php echo $allowfullscreen; ?>');
-					<?php endif; ?>
+						contentbefore.style.display = 'none';
 
-					<?php if ($allowtransparency != "") : ?>
-					iframe.setAttribute('allowtransparency', '<?php echo $allowtransparency; ?>');
-					<?php endif; ?>
+						disablebtn.style.display = 'block';
+						disablebtn.classList.toggle('disablecontent');
 
-					iframe.setAttribute('scrolling', '<?php echo $scrolling; ?>');
-					iframe.setAttribute('title', '');
-					iframe.setAttribute('name', '');
-					iframe.setAttribute('width', content.getAttribute('data-width'));
-					iframe.setAttribute('height', content.getAttribute('data-height'));
-					iframe.setAttribute('src', content.dataset.source);
+						contentafter.style.display = 'block';
+					});
 
-					content.style.display = "none";
-					content.insertAdjacentElement('beforebegin', iframe);
+					disablebtn[i].addEventListener("click", function (event) {
+						console.log(event.currentTarget.getAttribute('data-id'));
+						var iframe = document.createElement("iframe");
+						var ourCurrentId = event.currentTarget.getAttribute('data-id');
+						var content = document.querySelector(".ccctwoclick-" + ourCurrentId);
+						var disablebtn = document.querySelector(".ccctwoclickdisable-" + ourCurrentId);
+						var contentbefore = document.querySelector(".contentbefore-" + ourCurrentId);
+						var contentafter = document.querySelector(".contentafter-" + ourCurrentId);
 
-					contentbefore.style.display = 'none';
-
-					disablebtn.style.display = 'block';
-					disablebtn.classList.toggle('disablecontent');
-
-					contentafter.style.display = 'block';
-
-				});
-
-				disablebtn[i].addEventListener("click", function (event) {
-					console.log(event.currentTarget.getAttribute('data-id'))
-					var iframe = document.createElement("iframe");
-					var ourCurrentId = event.currentTarget.getAttribute('data-id');
-					var content = document.querySelector(".ccctwoclick-" + ourCurrentId);
-					var disablebtn = document.querySelector(".ccctwoclickdisable-" + ourCurrentId);
-					var contentbefore = document.querySelector(".contentbefore-" + ourCurrentId);
-					var contentafter = document.querySelector(".contentafter-" + ourCurrentId);
-
-					content.style.display = 'block';
-					content.parentNode.querySelector('iframe').remove();
-					disablebtn.style.display = 'none';
-					contentbefore.style.display = 'block';
-					contentafter.style.display = 'none';
-				});
-			}
-
-		})();
-	});
-
+						content.style.display = 'block';
+						content.parentNode.querySelector('iframe').remove();
+						disablebtn.style.display = 'none';
+						contentbefore.style.display = 'block';
+						contentafter.style.display = 'none';
+					});
+				}
+			})();
+		});
 	})();
 
 </script>
-
 
 <div class="ccctwoclickcontainer ccctwoclickcontainer-<?php echo $moduleId; ?> <?php echo $moduleclass_sfx; ?>"
      style="width:<?php echo $iwidth; ?>; margin:0 auto;">
