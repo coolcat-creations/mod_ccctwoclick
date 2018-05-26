@@ -2,20 +2,18 @@
 // No direct access
 defined('_JEXEC') or die;
 
+if ($contentBefore != '' || !empty($contentBefore)) :
+$contentBefore = '<div class="tccontentbefore contentbefore-' . $moduleId . '">' . $contentBefore .'</div>';
+$contentBeforeCenter = '<div class="tccontentbefore contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore .'</div>';
+endif;
 
-
-$contentBefore = '<div class="contentbefore-' . $moduleId . '">' . $contentBefore .'</div>';
-$contentBeforeCenter = '<div class="contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore .'</div>';
-
-$contentAfter = '<div class="contentafter-' . $moduleId . '" style="display:none;">' . $contentAfter .'</div>';
+if ($contentAfter != '' || !empty($contentAfter)) :
+$contentAfter = '<div class="tccontentafter contentafter-' . $moduleId . '" style="display:none;">' . $contentAfter .'</div>';
+endif;
 
 $btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . JText::_($btntxtReveal) .'</a>';
 $btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . JText::_($btntxtReveal) .'</a>';
-
 $btnDisable = '<a class="' . $btnclassDisable . '  ccctwoclickdisable-' . $moduleId . '" style="display:none;">' . JText::_($btntxtDisable) .'</a>';
-
-
-// if revealbutton or text is centered
 
 $centered = "";
 if ($contentbeforepos == 'center') :
@@ -47,9 +45,7 @@ endif;
 					var contentafter = ccctwoclickcontainer[i].querySelectorAll(".contentafter-<?php echo $moduleId; ?>");
 					var contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore-<?php echo $moduleId; ?>");
 
-
 					function enableContent() {
-							console.log('clicked');
 
 							var iframe = document.createElement("iframe");
 
@@ -76,8 +72,6 @@ endif;
 
 							contentafter[0].style.display = 'block';
 					}
-
-
 
 					document.getElementById("ccctc-<?php echo $moduleId; ?>").addEventListener("click",function(e) {
 						// e.target was the clicked element
@@ -123,25 +117,12 @@ endif;
      style="width:<?php echo $iwidth; ?>; margin:0 auto;">
 
 
-	<?php if ($contentbeforepos == 'top') : ?>
-		<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
-				<?php echo $contentBefore; ?>
-		<?php endif; ?>
-	<?php endif; ?>
-
-	<?php if ($contentafterpos == 'top') : ?>
-		<?php if ($contentAfter != '' || !empty($contentAfter)) : ?>
-			<?php echo $contentAfter; ?>
-		<?php endif; ?>
-	<?php endif; ?>
-
-	<?php if ($btndispos == 'top') : ?>
-		<?php echo $btnDisable; ?>
-	<?php endif; ?>
-
-	<?php if ($btnrevpos == 'top') : ?>
-		<?php echo $btnReveal; ?>
-	<?php endif; ?>
+	<?php
+	echo ($contentbeforepos == 'top' ? $contentBefore : '');
+	echo ($contentafterpos == 'top' ? $contentAfter : '');
+	echo ($btndispos == 'top' ? $btnDisable : '');
+	echo ($btnrevpos == 'top' ? $btnReveal : '');
+	?>
 
 	<div id="ccctc-<?php echo $moduleId; ?>"
 	     class="ccctc ccctwoclick-<?php echo $moduleId; ?>"
@@ -149,45 +130,25 @@ endif;
 	     data-width="<?php echo $iwidth; ?>"
 	     data-height="<?php echo $iheight; ?>"
 	     style="<?php echo 'width:' . $iwidth . '; height:' . $iheight . ';';
-	     if ($disabledimage): echo 'background-image:url(' . $disabledimage . ');'; endif;
-	     if ($disabledimage): echo 'background-size:' . $backgroundsize . ';'; endif;
-	     if ($disabledimage): echo 'background-repeat: no-repeat;'; endif;
-	     if ($disabledcolor): echo 'background-color:' . $disabledcolor . ';'; endif; ?>">
+	     echo ($disabledimage ? 'background-image:url(' . $disabledimage . '); background-repeat: no-repeat; background-size:' . $backgroundsize . ';' : '');
+	     echo ($disabledcolor ? 'background-color:' . $disabledcolor . ';' : ''); ?> ">
 
 		<?php if ($btnrevpos == 'center' || $contentbeforepos == 'center') : ?>
 			<div style="position:relative; <?php echo 'width:' . $iwidth . '; height:' . $iheight . ';'; ?> text-align: center;">
-				<?php if ($contentbeforepos == 'center') : ?>
-					<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
-						<?php echo $contentBeforeCenter; ?>
-					<?php endif; ?>
-				<?php endif; ?>
-				<?php if ($btnrevpos == 'center') : ?>
-					<?php echo $btnRevealCenter; ?>
-				<?php endif; ?>
+				<?php
+				echo ($contentbeforepos == 'center' ? $contentBeforeCenter : '');
+				echo ($btnrevpos == 'center' ? $btnRevealCenter : '');
+				?>
 			</div>
 		<?php endif; ?>
-
 	</div>
 
-	<?php if ($contentbeforepos == 'bottom') : ?>
-		<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
-			<?php echo $contentBefore; ?>
-		<?php endif; ?>
-	<?php endif; ?>
-
-	<?php if ($contentafterpos == 'bottom') : ?>
-		<?php if ($contentAfter != '' || !empty($contentAfter)) : ?>
-			<?php echo $contentAfter; ?>
-		<?php endif; ?>
-	<?php endif; ?>
-
-	<?php if ($btndispos == 'bottom') : ?>
-		<?php echo $btnDisable; ?>
-	<?php endif; ?>
-
-	<?php if ($btnrevpos == 'bottom') :?>
-		<?php echo $btnReveal; ?>
-	<?php endif; ?>
+	<?php
+	echo ($contentbeforepos == 'bottom' ? $contentBefore : '');
+	echo ($contentafterpos == 'bottom' ? $contentAfter : '');
+	echo ($btndispos == 'bottom' ? $btnDisable : '');
+	echo ($btnrevpos == 'bottom' ? $btnReveal : '');
+	?>
 
 </div>
 
