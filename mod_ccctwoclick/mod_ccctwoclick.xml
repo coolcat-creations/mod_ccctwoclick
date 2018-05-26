@@ -132,15 +132,17 @@
 				<field
 						name="iframename"
 						label="MOD_CCCTWOCLICK_IFRAMENAME_LBL"
+						desc="MOD_CCCTWOCLICK_IFRAMENAME_DESC"
 						type="text"
-						default="300px"
+						default=""
 				/>
 
 				<field
 						name="iframetitle"
 						label="MOD_CCCTWOCLICK_IFRAMETITLE_LBL"
+						desc="MOD_CCCTWOCLICK_IFRAMETITLE_DESC"
 						type="text"
-						default="300px"
+						default=""
 				/>
 
 				<field
