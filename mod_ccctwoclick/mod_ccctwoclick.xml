@@ -130,6 +130,20 @@
 				/>
 
 				<field
+						name="iframename"
+						label="MOD_CCCTWOCLICK_IFRAMENAME_LBL"
+						type="text"
+						default="300px"
+				/>
+
+				<field
+						name="iframetitle"
+						label="MOD_CCCTWOCLICK_IFRAMETITLE_LBL"
+						type="text"
+						default="300px"
+				/>
+
+				<field
 						name="sourceurl"
 						label="MOD_CCCTWOCLICK_SOURCE_URL"
 						type="text"
