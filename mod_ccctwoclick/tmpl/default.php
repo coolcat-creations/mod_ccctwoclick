@@ -23,13 +23,21 @@
 						var contentafter = document.querySelector(".contentafter-" + ourCurrentId);
 						var disablebtn = document.querySelector(".ccctwoclickdisable-" + ourCurrentId);
 
-						iframe.setAttribute('frameborder', '0');
-						iframe.setAttribute('allowfullscreen', 'true');
-						iframe.setAttribute('allowtransparency', 'true');
-						iframe.setAttribute('scrolling', 'no');
-						iframe.setAttribute('title', 'fb:page Facebook Social Plugin');
 
-						iframe.setAttribute('name', 'f2f966e5973af');
+						iframe.setAttribute('frameborder', '<?php echo $frameborder; ?>');
+
+						<?php if ($allowfullscreen != "") : ?>
+						iframe.setAttribute('allowfullscreen', '<?php echo $allowfullscreen; ?>');
+						<?php endif; ?>
+
+						<?php if ($allowtransparency != "") : ?>
+						iframe.setAttribute('allowtransparency', '<?php echo $allowtransparency; ?>');
+						<?php endif; ?>
+
+						iframe.setAttribute('scrolling', '<?php echo $scrolling; ?>');
+						iframe.setAttribute('title', '');
+						iframe.setAttribute('name', '');
+						
 						iframe.setAttribute('width', content.getAttribute('data-width'));
 						iframe.setAttribute('height', content.getAttribute('data-height'));
 
