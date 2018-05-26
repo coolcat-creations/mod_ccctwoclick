@@ -1,79 +1,201 @@
 <?php
 // No direct access
-defined('_JEXEC') or die; ?>
+defined('_JEXEC') or die;
 
+// if reveal is centered
+
+
+$centered = "";
+	if ($contentbeforepos == 'center') :  if ($contentBefore != '' || !empty($contentBefore)) :
+	$centered .=  '<div class="contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore . '</div>';
+	endif;
+	endif;
+
+	if ($btnrevpos == 'center') :
+	$centered .=  '<a class="' . $btnclassDisable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . JText::_($btntxtReveal) . '</a>';
+	endif;
+
+?>
 <script>
-	(function() {
+	(function () {
 
-		document.addEventListener('DOMContentLoaded', function() {
+		document.addEventListener('DOMContentLoaded', function () {
 
-			(function() {
+			(function () {
 
-				var ccctwoclickcontainer = document.querySelectorAll( ".ccctwoclickcontainer-<?php echo $moduleId; ?>" );
+				var ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer-<?php echo $moduleId; ?>");
 
 				for (var i = 0; i < ccctwoclickcontainer.length; i++) {
 
-					var content = ccctwoclickcontainer[i].querySelectorAll( ".ccctwoclick-<?php echo $moduleId; ?>" );
-					var enablebtn = ccctwoclickcontainer[i].querySelectorAll( ".ccctwoclickreveal-<?php echo $moduleId; ?>" );
+					var content = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclick-<?php echo $moduleId; ?>");
+					var enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>");
 					var disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>");
+					var contentafter = ccctwoclickcontainer[i].querySelectorAll(".contentafter-<?php echo $moduleId; ?>");
 					var contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore-<?php echo $moduleId; ?>");
 
-					enablebtn[0].addEventListener( "click", function() {
 
-						var iframe = document.createElement( "iframe" );
+					enablebtn[0].addEventListener("click", function (event) {
 
-						iframe.setAttribute( 'frameborder', '0' );
-						iframe.setAttribute( 'allowfullscreen', 'true' );
-						iframe.setAttribute( 'allowtransparency', 'true' );
-						iframe.setAttribute( 'scrolling', 'no' );
-						iframe.setAttribute( 'title', 'fb:page Facebook Social Plugin');
+							console.log('clicked');
 
-						iframe.setAttribute( 'name', 'f2f966e5973af' );
-						iframe.setAttribute( 'width', content[0].dataset.width );
-						iframe.setAttribute( 'height', content[0].dataset.height );
+							var iframe = document.createElement("iframe");
 
-						iframe.setAttribute( 'src', content[0].dataset.source );
+							iframe.setAttribute('frameborder', '0');
+							iframe.setAttribute('allowfullscreen', 'true');
+							iframe.setAttribute('allowtransparency', 'true');
+							iframe.setAttribute('scrolling', 'no');
+							iframe.setAttribute('title', 'fb:page Facebook Social Plugin');
 
-						content[0].innerHTML = "";
-						content[0].appendChild( iframe );
+							iframe.setAttribute('name', 'f2f966e5973af');
+							iframe.setAttribute('width', content[0].dataset.width);
+							iframe.setAttribute('height', content[0].dataset.height);
 
+							iframe.setAttribute('src', content[0].dataset.source);
 
-						enablebtn[0].style.display = 'none';
-						contentbefore[0].style.display = 'none';
+							content[0].innerHTML = "";
+							content[0].appendChild(iframe);
 
-						disablebtn[0].style.display = 'block';
-						disablebtn[0].classList.toggle('disablecontent');
+							enablebtn[0].style.display = 'none';
+							contentbefore[0].style.display = 'none';
 
-					} );
+							disablebtn[0].style.display = 'block';
+							disablebtn[0].classList.toggle('disablecontent');
 
-					disablebtn[0].addEventListener( "click", function() {
+							contentafter[0].style.display = 'block';
+					});
+
+					disablebtn[0].addEventListener("click", function () {
 						content[0].innerHTML = "";
 						disablebtn[0].style.display = 'none';
 						enablebtn[0].style.display = 'block';
 						contentbefore[0].style.display = 'block';
+						contentafter[0].style.display = 'none';
 
-					} );
+						<?php if ($btnrevpos == 'center' || $contentbeforepos == 'center') : ?>
 
-				};
+						var newEl = document.createElement('div');
 
-			} )();
+						newEl.style.position='relative';
+						newEl.style.width='<?php echo $iwidth; ?>';
+						newEl.style.height='<?php echo $iheight; ?>';
+						newEl.style.textAlign='center';
+						newEl.innerHTML = '<?php echo $centered; ?>';
+
+						document.getElementById('ccctc-<?php echo $moduleId; ?>').appendChild(newEl);
+
+						<?php endif; ?>
+
+					});
+
+
+				}
+
+			})();
 		});
 
 	})();
 </script>
 
-<div class="ccctwoclickcontainer-<?php echo $moduleId; ?> <?php echo $moduleclass_sfx; ?>" style="width:<?php echo $iwidth; ?>; margin:0pt auto;">
+<div class="ccctwoclickcontainer-<?php echo $moduleId; ?> <?php echo $moduleclass_sfx; ?>"
+     style="width:<?php echo $iwidth; ?>; margin:0pt auto;">
 
-	<div class="ccctc ccctwoclick-<?php echo $moduleId; ?>" data-source="<?php echo $isrc; ?>" data-width="<?php echo $iwidth; ?>" data-height="<?php echo $iheight; ?>"
-	     style="width:<?php echo $iwidth; ?>; height:<?php echo $iheight; ?>; <?php if ($disabledimage) : ?>background:url(<?php echo $disabledimage; ?>) no-repeat; background-size:<?php echo $backgroundsize; ?>;<?php endif;?>">
+
+	<?php if ($contentbeforepos == 'top') : ?>
+		<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
+			<div class="contentbefore-<?php echo $moduleId; ?>">
+				<?php echo $contentBefore; ?>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
+
+	<?php if ($contentafterpos == 'top') : ?>
+		<?php if ($contentAfter != '' || !empty($contentAfter)) : ?>
+			<div class="contentafter-<?php echo $moduleId; ?>" style="display:none;">
+				<?php echo $contentAfter; ?>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
+
+
+	<?php if ($btndispos == 'top') : ?>
+		<a class="<?php echo $btnclassEnable; ?>  ccctwoclickdisable-<?php echo $moduleId; ?>"
+		   style="display:none;"><?php echo JText::_($btntxtDisable); ?></a>
+	<?php endif; ?>
+
+	<?php if ($btnrevpos == 'top') : ?>
+		<a class="<?php echo $btnclassDisable; ?> ccctwoclickreveal-<?php echo $moduleId; ?>"><?php echo JText::_($btntxtReveal); ?></a>
+	<?php endif; ?>
+
+
+	<div id="ccctc-<?php echo $moduleId; ?>"
+	     class="ccctc ccctwoclick-<?php echo $moduleId; ?>"
+	     data-source="<?php echo $isrc; ?>"
+	     data-width="<?php echo $iwidth; ?>"
+	     data-height="<?php echo $iheight; ?>"
+	     style="<?php echo 'width:' . $iwidth . '; height:' . $iheight . ';';
+	     if ($disabledimage): echo 'background-image:url(' . $disabledimage . ');'; endif;
+	     if ($disabledimage): echo 'background-size:' . $backgroundsize . ';'; endif;
+	     if ($disabledimage): echo 'background-repeat: no-repeat;'; endif;
+	     if ($disabledcolor): echo 'background-color:' . $disabledcolor . ';'; endif; ?>">
+
+
+		<?php if ($btnrevpos == 'center' || $contentbeforepos == 'center') : ?>
+
+			<div style="position:relative; <?php echo 'width:' . $iwidth . '; height:' . $iheight . ';'; ?> text-align: center;">
+
+				<?php if ($contentbeforepos == 'center') : ?>
+					<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
+						<div class="contentbefore-<?php echo $moduleId; ?>" style="position:relative; top:50%;">
+							<?php echo $contentBefore; ?>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
+
+				<?php if ($btnrevpos == 'center') : ?>
+					<a class="<?php echo $btnclassDisable; ?> ccctwoclickreveal-<?php echo $moduleId; ?>"
+					   style="position:relative; top:50%;">
+						<?php echo JText::_($btntxtReveal); ?></a>
+				<?php endif; ?>
+
+			</div>
+
+		<?php endif; ?>
+
+
+
+
+
+
 	</div>
 
-	<div class="contentbefore-<?php echo $moduleId; ?>">
-		<?php echo $contentBefore; ?>
-	</div>
 
-	<a class="<?php echo $btnclassDisable; ?> ccctwoclickreveal-<?php echo $moduleId; ?>"><?php echo JText::_($btntxtReveal); ?></a>
-	<a class="<?php echo $btnclassEnable; ?>  ccctwoclickdisable-<?php echo $moduleId; ?>" style="display:none;"><?php echo JText::_($btntxtDisable); ?></a>
+	<?php if ($contentbeforepos == 'bottom') : ?>
+		<?php if ($contentBefore != '' || !empty($contentBefore)) : ?>
+			<div class="contentbefore-<?php echo $moduleId; ?>">
+				<?php echo $contentBefore; ?>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
+
+
+	<?php if ($contentafterpos == 'bottom') : ?>
+		<?php if ($contentAfter != '' || !empty($contentAfter)) : ?>
+			<div class="contentafter-<?php echo $moduleId; ?>" style="display:none;">
+				<?php echo $contentAfter; ?>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
+
+	<?php if ($btndispos == 'bottom') : ?>
+		<a class="<?php echo $btnclassEnable; ?>  ccctwoclickdisable-<?php echo $moduleId; ?>"
+		   style="display:none;"><?php echo JText::_($btntxtDisable); ?></a>
+	<?php endif; ?>
+
+	<?php if ($btnrevpos == 'bottom') :?>
+		<a class="<?php echo $btnclassDisable; ?> ccctwoclickreveal-<?php echo $moduleId; ?>">
+			<?php echo JText::_($btntxtReveal); ?></a>
+	<?php endif; ?>
+
 </div>
 
 
