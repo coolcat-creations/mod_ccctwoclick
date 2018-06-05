@@ -31,7 +31,8 @@ Custom Button Text: The default button text is setup in the language file, if yo
 Button Class: Add here a Button Class if needed
 
 ### Iframe Settings:
-IFrame Source: Fill this input with the iframe link
+IFrame Source: Fill this input with the iframe link = A Link is an url to the embeded content and starts usually with https:// please do not fill here any iframe code or any plugin codes!
+
 Information: You get the exact iframe Link if you:
   Examples:
   Facebook: Get the Like Box Code and take just the URL from the provided iframe HTML
