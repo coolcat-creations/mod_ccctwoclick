@@ -1,3 +1,5 @@
+[Zur deutschen Anleitung springen](#deutsch)
+
 # mod_ccctwoclick
 This module reveals an external iframe only after user click. (2-Click Solution) to respect the privacy of the user.
 
@@ -51,6 +53,7 @@ Allow Transparency: Setup the transparency attribute to true or false
 Scrolling: Setup the scrolling attribute to yes or no
 Load module css: Disable the Module CSS if needed
 
+# deutsch
 # mod_ccctwoclick
 Dieses Modul zeigt ein externes iframe erst an, sobald der User auf einen Button geklickt hat (2-Klick Lösung). Dies kann zum Beispiel dazu verwendet werden um Datenschutzrichtlinien einzuhalten. 
 
