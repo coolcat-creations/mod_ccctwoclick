@@ -1,7 +1,7 @@
 <updates>
 	<update>
 		<name>mod_ccctwoclick</name>
-		<descriptionThis module reveals an external iframe only after user click. (2-Click Solution) to respect the privacy of the user.</description>
+		<description>This module reveals an external iframe only after user click. (2-Click Solution) to respect the privacy of the user.</description>
 		<element>mod_ccctwoclick</element>
 		<type>module</type>
 		<client>site</client>
