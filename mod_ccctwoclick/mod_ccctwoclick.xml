@@ -294,6 +294,13 @@
 				</field>
 
 				<field
+						name="layout"
+						label="JFIELD_ALT_LAYOUT_LABEL"
+						type="modulelayout"
+						description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+
+				<field
 						name="moduleclass_sfx"
 						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
 						type="textarea"
