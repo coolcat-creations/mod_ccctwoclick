@@ -2,14 +2,10 @@
 // No direct access
 defined('_JEXEC') or die;
 
-if ($contentBefore != '' || !empty($contentBefore)) :
 $contentBefore = '<div class="tccontentbefore contentbefore-' . $moduleId . '">' . $contentBefore .'</div>';
 $contentBeforeCenter = '<div class="tccontentbefore contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore .'</div>';
-endif;
 
-if ($contentAfter != '' || !empty($contentAfter)) :
 $contentAfter = '<div class="tccontentafter contentafter-' . $moduleId . '" style="display:none;">' . $contentAfter .'</div>';
-endif;
 
 $btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . JText::_($btntxtReveal) .'</a>';
 $btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . JText::_($btntxtReveal) .'</a>';
@@ -53,9 +49,9 @@ endif;
 							iframe.setAttribute('allowfullscreen', 'true');
 							iframe.setAttribute('allowtransparency', 'true');
 							iframe.setAttribute('scrolling', 'no');
-							iframe.setAttribute('title', 'fb:page Facebook Social Plugin');
+							iframe.setAttribute('title', '<?php echo $iframetitle; ?>');
 
-							iframe.setAttribute('name', 'f2f966e5973af');
+							iframe.setAttribute('name', '<?php echo $iframename; ?>');
 							iframe.setAttribute('width', content[0].dataset.width);
 							iframe.setAttribute('height', content[0].dataset.height);
 
@@ -151,5 +147,3 @@ endif;
 	?>
 
 </div>
-
-
