@@ -70,7 +70,6 @@ endif;
 					}
 
 					document.getElementById("ccctc-<?php echo $moduleId; ?>").addEventListener("click",function(e) {
-						// e.target was the clicked element
 						if (e.target && e.target.matches("a.ccctwoclickreveal-<?php echo $moduleId; ?>")) {
 							enableContent();
 						}
