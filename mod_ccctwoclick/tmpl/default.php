@@ -1,15 +1,29 @@
 <?php
-// No direct access
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
+$privacy = false;
+if ($displayPrivacyLink) {
+	$privacyLink = Route::_('index.php?Itemid=' . $privacyLink);
+	$privacy = '<a href="' . $privacyLink .'" target="_blank">' . Text::_($privacyLinkText) . '</a>';
+}
+
+if ($privacy) {
+	$contentBefore = $contentBefore . ' <span class="ccctwoclick-privacy">' . $privacy . '</span>';
+}
+
 $contentBefore = '<div class="tccontentbefore contentbefore-' . $moduleId . '">' . $contentBefore .'</div>';
-$contentBeforeCenter = '<div class="tccontentbefore contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore .'</div>';
+
+$contentBeforeCenter = '<div class="tccontentbefore contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore . '</div>';
+
 
 $contentAfter = '<div class="tccontentafter contentafter-' . $moduleId . '" style="display:none;">' . $contentAfter .'</div>';
 
-$btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . JText::_($btntxtReveal) .'</a>';
-$btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . JText::_($btntxtReveal) .'</a>';
-$btnDisable = '<a class="' . $btnclassDisable . '  ccctwoclickdisable-' . $moduleId . '" style="display:none;">' . JText::_($btntxtDisable) .'</a>';
+$btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . Text::_($btntxtReveal) .'</a>';
+$btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . Text::_($btntxtReveal) .'</a>';
+$btnDisable = '<a class="' . $btnclassDisable . '  ccctwoclickdisable-' . $moduleId . '" style="display:none;">' . Text::_($btntxtDisable) .'</a>';
 
 $centered = "";
 if ($contentbeforepos == 'center') :
@@ -31,19 +45,19 @@ endif;
 
 			(function () {
 
-				var ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer-<?php echo $moduleId; ?>");
+				let ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer-<?php echo $moduleId; ?>");
 
-				for (var i = 0; i < ccctwoclickcontainer.length; i++) {
+				for (let i = 0; i < ccctwoclickcontainer.length; i++) {
 
-					var content = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclick-<?php echo $moduleId; ?>");
-					var enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>");
-					var disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>");
-					var contentafter = ccctwoclickcontainer[i].querySelectorAll(".contentafter-<?php echo $moduleId; ?>");
-					var contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore-<?php echo $moduleId; ?>");
+					let content = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclick-<?php echo $moduleId; ?>");
+					let enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>");
+					let disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>");
+					let contentafter = ccctwoclickcontainer[i].querySelectorAll(".contentafter-<?php echo $moduleId; ?>");
+					let contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore-<?php echo $moduleId; ?>");
 
 					function enableContent() {
 
-							var iframe = document.createElement("iframe");
+						let iframe = document.createElement("iframe");
 
 							iframe.setAttribute('frameborder', '0');
 							iframe.setAttribute('allowfullscreen', 'true');
@@ -88,7 +102,7 @@ endif;
 
 						<?php if ($btnrevpos == 'center' || $contentbeforepos == 'center') : ?>
 
-						var centered = document.createElement('div');
+						let centered = document.createElement('div');
 							centered.style.position='relative';
 							centered.style.width='<?php echo $iwidth; ?>';
 							centered.style.height='<?php echo $iheight; ?>';
