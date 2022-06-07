@@ -45,19 +45,19 @@ endif;
 
 			(function () {
 
-				var ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer-<?php echo $moduleId; ?>");
+				let ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer-<?php echo $moduleId; ?>");
 
-				for (var i = 0; i < ccctwoclickcontainer.length; i++) {
+				for (let i = 0; i < ccctwoclickcontainer.length; i++) {
 
-					var content = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclick-<?php echo $moduleId; ?>");
-					var enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>");
-					var disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>");
-					var contentafter = ccctwoclickcontainer[i].querySelectorAll(".contentafter-<?php echo $moduleId; ?>");
-					var contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore-<?php echo $moduleId; ?>");
+					let content = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclick-<?php echo $moduleId; ?>");
+					let enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>");
+					let disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>");
+					let contentafter = ccctwoclickcontainer[i].querySelectorAll(".contentafter-<?php echo $moduleId; ?>");
+					let contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore-<?php echo $moduleId; ?>");
 
 					function enableContent() {
 
-							var iframe = document.createElement("iframe");
+						let iframe = document.createElement("iframe");
 
 							iframe.setAttribute('frameborder', '0');
 							iframe.setAttribute('allowfullscreen', 'true');
@@ -102,7 +102,7 @@ endif;
 
 						<?php if ($btnrevpos == 'center' || $contentbeforepos == 'center') : ?>
 
-						var centered = document.createElement('div');
+						let centered = document.createElement('div');
 							centered.style.position='relative';
 							centered.style.width='<?php echo $iwidth; ?>';
 							centered.style.height='<?php echo $iheight; ?>';
