@@ -1,15 +1,29 @@
 <?php
-// No direct access
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
+$privacy = false;
+if ($displayPrivacyLink) {
+	$privacyLink = Route::_('index.php?Itemid=' . $privacyLink);
+	$privacy = '<a href="' . $privacyLink .'" target="_blank">' . Text::_($privacyLinkText) . '</a>';
+}
+
+if ($privacy) {
+	$contentBefore = $contentBefore . ' <span class="ccctwoclick-privacy">' . $privacy . '</span>';
+}
+
 $contentBefore = '<div class="tccontentbefore contentbefore-' . $moduleId . '">' . $contentBefore .'</div>';
-$contentBeforeCenter = '<div class="tccontentbefore contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore .'</div>';
+
+$contentBeforeCenter = '<div class="tccontentbefore contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore . '</div>';
+
 
 $contentAfter = '<div class="tccontentafter contentafter-' . $moduleId . '" style="display:none;">' . $contentAfter .'</div>';
 
-$btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . JText::_($btntxtReveal) .'</a>';
-$btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . JText::_($btntxtReveal) .'</a>';
-$btnDisable = '<a class="' . $btnclassDisable . '  ccctwoclickdisable-' . $moduleId . '" style="display:none;">' . JText::_($btntxtDisable) .'</a>';
+$btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . Text::_($btntxtReveal) .'</a>';
+$btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . Text::_($btntxtReveal) .'</a>';
+$btnDisable = '<a class="' . $btnclassDisable . '  ccctwoclickdisable-' . $moduleId . '" style="display:none;">' . Text::_($btntxtDisable) .'</a>';
 
 $centered = "";
 if ($contentbeforepos == 'center') :
