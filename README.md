@@ -15,7 +15,7 @@ CCC Two Click embeds external iframes only after explicit consent. Ideal for map
 ## Quick Start
 1. Set **iFrame source** and **iFrame title**.
 2. Add **Content before** (explains the privacy impact).
-3. Choose **Consent control**: toggle, button, or both.
+3. Choose **Consent control**: toggle or button.
 4. Optional: set **Privacy link** and **Extended privacy details**.
 5. Save and test.
 
@@ -55,7 +55,7 @@ CCC Two Click bindet externe iFrames erst nach ausdruecklicher Zustimmung ein. I
 ## Schnellstart
 1. **iFrame Quelle** und **iFrame Titel** setzen.
 2. **Inhalt davor** verfassen (Datenschutz‑Hinweis).
-3. **Consent‑Steuerung** waehlen: Toggle, Button oder beides.
+3. **Consent‑Steuerung** waehlen: Toggle oder Button.
 4. Optional: **Datenschutz‑Link** und **erweiterte Details** setzen.
 5. Speichern und testen.
 

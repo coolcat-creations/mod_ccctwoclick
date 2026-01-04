@@ -12,8 +12,8 @@ use Joomla\CMS\Router\Route;
 
 // Module identification
 $moduleId           = (int) $module->id;
-$shouldRenderToggle = in_array($consentControl, ['toggle', 'both'], true);
-$shouldRenderButton = in_array($consentControl, ['button', 'both'], true);
+$shouldRenderToggle = $consentControl === 'toggle';
+$shouldRenderButton = $consentControl === 'button';
 
 // Privacy card text defaults
 $privacyHeading               = $privacyHeadingText !== '' ? $privacyHeadingText : Text::_('MOD_CCCTWOCLICK_PRIVACY_CARD_HEADING_DEFAULT');

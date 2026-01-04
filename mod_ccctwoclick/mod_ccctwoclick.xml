@@ -180,7 +180,6 @@
 				>
 					<option value="toggle">MOD_CCCTWOCLICK_CONSENT_CONTROL_TOGGLE</option>
 					<option value="button">MOD_CCCTWOCLICK_CONSENT_CONTROL_BUTTON</option>
-					<option value="both">MOD_CCCTWOCLICK_CONSENT_CONTROL_BOTH</option>
 				</field>
 
 				<field

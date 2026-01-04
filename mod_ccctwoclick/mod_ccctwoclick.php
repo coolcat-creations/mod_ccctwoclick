@@ -158,6 +158,10 @@ $consentScope             = $params->get('consent_scope', 'domain');
 $loadDelay                = (int) $params->get('load_delay', 600);
 $a11yRegionLabel          = trim((string) $params->get('a11y_region_label', ''));
 
+if (!in_array($consentControl, ['toggle', 'button'], true)) {
+	$consentControl = 'toggle';
+}
+
 if (!in_array($consentScope, ['module', 'domain', 'global'], true)) {
 	$consentScope = 'domain';
 }
