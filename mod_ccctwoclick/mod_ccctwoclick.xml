@@ -2,7 +2,7 @@
 <extension type="module" version="5.4.0" client="site" method="upgrade">
 	<name>mod_ccctwoclick</name>
 	<scriptfile>script.php</scriptfile>
-	<creationDate>04/01/2026</creationDate>
+	<creationDate>January 2026</creationDate>
 	<author>Elisa Foltyn</author>
 	<version>3.0.0</version>
 	<copyright>COOLCAT creations - https://coolcat-creations.com</copyright>
