@@ -1,162 +1,103 @@
 <?php
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Router\Route;
-
+/**
+ * @package     Joomla.Site
+ * @subpackage  mod_ccctwoclick
+ *
+ * Main template for the CCC Two Click module.
+ *
+ * This template includes several partials for better maintainability:
+ * - default_helpers.php    : Helper functions ($escape, $normalizeCssSize, $extractNumeric)
+ * - default_variables.php  : Variable initialization and processing
+ * - default_card.php       : Privacy card block generation
+ * - default_bar.php        : Privacy bar block generation
+ * - default_inline_css.php : Inline CSS (when external stylesheet is disabled)
+ */
 defined('_JEXEC') or die;
 
-$privacy = false;
-if ($displayPrivacyLink) {
-	$privacyLink = Route::_('index.php?Itemid=' . $privacyLink);
-	$privacy = '<a href="' . $privacyLink .'" target="_blank">' . Text::_($privacyLinkText) . '</a>';
-}
+use Joomla\CMS\Helper\ModuleHelper;
 
-if ($privacy) {
-	$contentBefore = $contentBefore . ' <span class="ccctwoclick-privacy">' . $privacy . '</span>';
-}
+$layoutBase = $params->get('layout', 'default');
 
-$contentBefore = '<div class="tccontentbefore contentbefore-' . $moduleId . '">' . $contentBefore .'</div>';
+// Load helper functions
+require ModuleHelper::getLayoutPath('mod_ccctwoclick', $layoutBase . '_helpers');
 
-$contentBeforeCenter = '<div class="tccontentbefore contentbefore-' . $moduleId . '" style="position:relative; top:50%;">' . $contentBefore . '</div>';
+// Initialize and process variables
+require ModuleHelper::getLayoutPath('mod_ccctwoclick', $layoutBase . '_variables');
 
+// Generate privacy card block
+require ModuleHelper::getLayoutPath('mod_ccctwoclick', $layoutBase . '_card');
 
-$contentAfter = '<div class="tccontentafter contentafter-' . $moduleId . '" style="display:none;">' . $contentAfter .'</div>';
+// Generate privacy bar block
+require ModuleHelper::getLayoutPath('mod_ccctwoclick', $layoutBase . '_bar');
 
-$btnReveal = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '">' . Text::_($btntxtReveal) .'</a>';
-$btnRevealCenter = '<a class="' . $btnclassEnable . ' ccctwoclickreveal-' . $moduleId . '" style="position:relative; top:50%;">' . Text::_($btntxtReveal) .'</a>';
-$btnDisable = '<a class="' . $btnclassDisable . '  ccctwoclickdisable-' . $moduleId . '" style="display:none;">' . Text::_($btntxtDisable) .'</a>';
+// Load inline CSS definitions
+require ModuleHelper::getLayoutPath('mod_ccctwoclick', $layoutBase . '_inline_css');
 
-$centered = "";
-if ($contentbeforepos == 'center') :
-	if ($contentBefore != '' || !empty($contentBefore)) :
-	$centered .=  $contentBeforeCenter;
-	endif;
-endif;
-
-if ($btnrevpos == 'center') :
-	$centered .=  $btnRevealCenter;
-endif;
 ?>
+<div class="<?php echo $escape(implode(' ', array_filter($containerClasses))); ?>"
+     data-ccctwoclick="<?php echo $moduleId; ?>"
+     data-load-delay="<?php echo $loadDelayValue; ?>"
+     data-consent-scope="<?php echo $escape($consentScopeValue); ?>"
+     data-store-consent="<?php echo $storeConsentValue; ?>"
+     data-remember-consent="<?php echo $rememberValue; ?>"
+     data-card-slot-pre="<?php echo $escape($cardSlotPre); ?>"
+     data-card-slot-post="<?php echo $escape($cardSlotPost); ?>"
+     data-bar-slot-pre="<?php echo $escape($barSlotPre); ?>"
+     data-bar-slot-post="<?php echo $escape($barSlotPost); ?>"
+     role="region"
+     aria-label="<?php echo $escape($a11yRegionLabel); ?>">
 
+    <div class="ccctwoclick__slot-group ccctwoclick__slot-group--pre-top">
+        <div class="ccctwoclick__card-slot" data-card-slot="pre-top"><?php $cardRenderer('pre-top'); ?></div>
+        <div class="ccctwoclick__bar-slot" data-bar-slot="pre-top"><?php $barRenderer('pre-top'); ?></div>
+    </div>
 
-<script>
-	(function () {
+    <div class="ccctwoclick__slot-group ccctwoclick__slot-group--post-top">
+        <div class="ccctwoclick__card-slot" data-card-slot="post-top"></div>
+        <div class="ccctwoclick__bar-slot" data-bar-slot="post-top"></div>
+    </div>
 
-		document.addEventListener('DOMContentLoaded', function () {
+    <div class="<?php echo $escape(implode(' ', $placeholderClasses)); ?>"
+         data-ccctwoclick-placeholder
+         data-source="<?php echo $escape($source); ?>"
+         data-width="<?php echo $escape($extractNumeric($normalizedWidth)); ?>"
+         data-width-style="<?php echo $escape($normalizedWidth); ?>"
+         data-height="<?php echo $escape($extractNumeric($normalizedHeight)); ?>"
+         data-height-style="<?php echo $escape($normalizedHeight); ?>"
+         data-responsive="<?php echo $isResponsiveActive ? 1 : 0; ?>"
+         data-ratio="<?php echo $responsiveRatio ? number_format((float) $responsiveRatio, 6, '.', '') : ''; ?>"
+         data-frameborder="<?php echo $escape($iframeFrameborder); ?>"
+         data-allowfullscreen="<?php echo $allowFullscreenAttr; ?>"
+         data-allowtransparency="<?php echo $allowTransparencyAttr; ?>"
+         data-scrolling="<?php echo $escape($scrollingValue); ?>"
+         data-iframename="<?php echo $escape($iframeName); ?>"
+         data-iframetitle="<?php echo $escape($iframeTitle); ?>"
+         data-overlay="<?php echo $overlayVisible; ?>"
+         data-bg-image="<?php echo $escape($dataBgImage); ?>"
+         data-bg-size="<?php echo $escape($dataBgSize); ?>"
+         data-bg-color="<?php echo $escape($dataBgColor); ?>"
+         data-video-autoplay="<?php echo (int) $videoAutoplay; ?>"
+         style="<?php echo $escape(implode(' ', $placeholderStyles)); ?>">
 
-			(function () {
+        <div class="ccctwoclick__overlay-slots">
+            <div class="ccctwoclick__card-slot" data-card-slot="pre-overlay"><?php $cardRenderer('pre-overlay'); ?></div>
+            <div class="ccctwoclick__bar-slot" data-bar-slot="pre-overlay"><?php $barRenderer('pre-overlay'); ?></div>
+        </div>
 
-				let ccctwoclickcontainer = document.querySelectorAll(".ccctwoclickcontainer-<?php echo $moduleId; ?>");
+        <div class="ccctwoclick__media" data-ccctwoclick-media aria-live="polite"></div>
+    </div>
 
-				for (let i = 0; i < ccctwoclickcontainer.length; i++) {
+    <div class="ccctwoclick__slot-group ccctwoclick__slot-group--pre-bottom">
+        <div class="ccctwoclick__card-slot" data-card-slot="pre-bottom"><?php $cardRenderer('pre-bottom'); ?></div>
+        <div class="ccctwoclick__bar-slot" data-bar-slot="pre-bottom"><?php $barRenderer('pre-bottom'); ?></div>
+    </div>
 
-					let content = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclick-<?php echo $moduleId; ?>");
-					let enablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickreveal-<?php echo $moduleId; ?>");
-					let disablebtn = ccctwoclickcontainer[i].querySelectorAll(".ccctwoclickdisable-<?php echo $moduleId; ?>");
-					let contentafter = ccctwoclickcontainer[i].querySelectorAll(".contentafter-<?php echo $moduleId; ?>");
-					let contentbefore = ccctwoclickcontainer[i].querySelectorAll(".contentbefore-<?php echo $moduleId; ?>");
-
-					function enableContent() {
-
-						let iframe = document.createElement("iframe");
-
-							iframe.setAttribute('frameborder', '0');
-							iframe.setAttribute('allowfullscreen', 'true');
-							iframe.setAttribute('allowtransparency', 'true');
-							iframe.setAttribute('scrolling', 'no');
-							iframe.setAttribute('title', '<?php echo $iframetitle; ?>');
-
-							iframe.setAttribute('name', '<?php echo $iframename; ?>');
-							iframe.setAttribute('width', content[0].dataset.width);
-							iframe.setAttribute('height', content[0].dataset.height);
-
-							iframe.setAttribute('src', content[0].dataset.source);
-
-							content[0].innerHTML = "";
-							content[0].appendChild(iframe);
-
-							enablebtn[0].style.display = 'none';
-							contentbefore[0].style.display = 'none';
-
-							disablebtn[0].style.display = 'block';
-							disablebtn[0].classList.toggle('disablecontent');
-
-							contentafter[0].style.display = 'block';
-					}
-
-					document.getElementById("ccctc-<?php echo $moduleId; ?>").addEventListener("click",function(e) {
-						if (e.target && e.target.matches("a.ccctwoclickreveal-<?php echo $moduleId; ?>")) {
-							enableContent();
-						}
-					});
-
-					enablebtn[0].addEventListener("click", function (event) {
-						enableContent();
-					});
-
-					disablebtn[0].addEventListener("click", function () {
-						content[0].innerHTML = "";
-						disablebtn[0].style.display = 'none';
-						enablebtn[0].style.display = 'block';
-						contentbefore[0].style.display = 'block';
-						contentafter[0].style.display = 'none';
-
-						<?php if ($btnrevpos == 'center' || $contentbeforepos == 'center') : ?>
-
-						let centered = document.createElement('div');
-							centered.style.position='relative';
-							centered.style.width='<?php echo $iwidth; ?>';
-							centered.style.height='<?php echo $iheight; ?>';
-							centered.style.textAlign='center';
-							centered.innerHTML = '<?php echo $centered; ?>';
-
-						document.getElementById('ccctc-<?php echo $moduleId; ?>').appendChild(centered);
-
-						<?php endif; ?>
-
-					});
-				}
-			})();
-		});
-
-	})();
-</script>
-
-
-<div class="ccctwoclickcontainer-<?php echo $moduleId; ?> <?php echo $moduleclass_sfx; ?>"
-     style="width:<?php echo $iwidth; ?>; margin:0 auto;">
-
-
-	<?php
-	echo ($contentbeforepos == 'top' ? $contentBefore : '');
-	echo ($contentafterpos == 'top' ? $contentAfter : '');
-	echo ($btndispos == 'top' ? $btnDisable : '');
-	echo ($btnrevpos == 'top' ? $btnReveal : '');
-	?>
-
-	<div id="ccctc-<?php echo $moduleId; ?>"
-	     class="ccctc ccctwoclick-<?php echo $moduleId; ?>"
-	     data-source="<?php echo $isrc; ?>"
-	     data-width="<?php echo $iwidth; ?>"
-	     data-height="<?php echo $iheight; ?>"
-	     style="<?php echo 'width:' . $iwidth . '; height:' . $iheight . ';';
-	     echo ($disabledimage ? 'background-image:url(' . $disabledimage . '); background-repeat: no-repeat; background-size:' . $backgroundsize . ';' : '');
-	     echo ($disabledcolor ? 'background-color:' . $disabledcolor . ';' : ''); ?> ">
-
-		<?php if ($btnrevpos == 'center' || $contentbeforepos == 'center') : ?>
-			<div style="position:relative; <?php echo 'width:' . $iwidth . '; height:' . $iheight . ';'; ?> text-align: center;">
-				<?php
-				echo ($contentbeforepos == 'center' ? $contentBeforeCenter : '');
-				echo ($btnrevpos == 'center' ? $btnRevealCenter : '');
-				?>
-			</div>
-		<?php endif; ?>
-	</div>
-
-	<?php
-	echo ($contentbeforepos == 'bottom' ? $contentBefore : '');
-	echo ($contentafterpos == 'bottom' ? $contentAfter : '');
-	echo ($btndispos == 'bottom' ? $btnDisable : '');
-	echo ($btnrevpos == 'bottom' ? $btnReveal : '');
-	?>
-
+    <div class="ccctwoclick__slot-group ccctwoclick__slot-group--post-bottom">
+        <div class="ccctwoclick__card-slot" data-card-slot="post-bottom"></div>
+        <div class="ccctwoclick__bar-slot" data-bar-slot="post-bottom"></div>
+    </div>
 </div>
+
+<?php if ($stylesheet === 'no') : ?>
+    <style><?php echo $inlineBaseCss . $inlineToggleCss; ?></style>
+<?php endif; ?>
