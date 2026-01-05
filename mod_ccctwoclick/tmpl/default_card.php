@@ -14,6 +14,7 @@ $legalContentHtml = '';
 if ($privacyNoticeTextValue !== '' || $privacyLinkUrlValid) {
     ob_start();
     ?>
+
     <small><?php echo nl2br($escape($privacyNoticeTextValue)); ?>
         <?php if ($privacyLinkUrlValid) : ?>
             <a class="ccctwoclick__privacy-link" href="<?php echo $escape($privacyLinkHref); ?>"<?php echo $privacyLinkTargetAttrs; ?>>
@@ -21,6 +22,7 @@ if ($privacyNoticeTextValue !== '' || $privacyLinkUrlValid) {
             </a>
         <?php endif; ?>
     </small>
+
     <?php
     $legalContentHtml = trim(ob_get_clean());
 }
@@ -30,6 +32,7 @@ $detailsContentHtml = '';
 if ($extendedPrivacyEnable && $privacyDetailsTextValue !== '') {
     ob_start();
     ?>
+
     <button type="button"
             class="ccctwoclick__details-toggle"
             data-ccctwoclick-details-toggle
@@ -39,9 +42,11 @@ if ($extendedPrivacyEnable && $privacyDetailsTextValue !== '') {
             data-close-label="<?php echo $escape($privacyDetailsToggleHideText); ?>">
         <?php echo $escape($privacyDetailsToggleText); ?>
     </button>
+
     <div id="ccctwoclick-details-<?php echo $moduleId; ?>" class="ccctwoclick__details-body" data-ccctwoclick-details hidden>
         <?php echo $privacyDetailsTextValue; ?>
     </div>
+
     <?php
     $detailsContentHtml = trim(ob_get_clean());
 }
@@ -60,11 +65,13 @@ if ($cardTextColor !== '') {
 if ($cardBoxShadow !== '') {
     $cardStyles[] = 'box-shadow:' . $escape($cardBoxShadow);
 }
+
 $cardStyleAttr = !empty($cardStyles) ? ' style="' . implode(';', $cardStyles) . '"' : '';
 
 // Build privacy card HTML
 ob_start();
 ?>
+
 <div class="ccctwoclick__block ccctwoclick__block--card"
      data-ccctwoclick-block="card"
      role="group"
@@ -139,5 +146,6 @@ ob_start();
         </div>
     <?php endif; ?>
 </div>
+
 <?php
 $cardBlockHtml = trim(ob_get_clean());

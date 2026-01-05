@@ -9,6 +9,7 @@ defined('_JEXEC') or die;
 
 // Build bar inline styles
 $barStyles = [];
+
 if ($barBackgroundColor !== '') {
     $barStyles[] = 'background:' . $escape($barBackgroundColor);
 }
@@ -21,6 +22,7 @@ if ($barTextColor !== '') {
 if ($barBoxShadow !== '') {
     $barStyles[] = 'box-shadow:' . $escape($barBoxShadow);
 }
+
 $barStyleAttr = !empty($barStyles) ? ' style="' . implode(';', $barStyles) . '"' : '';
 
 // Only create separate bar block when layout is NOT integrated
@@ -28,6 +30,7 @@ $barBlockHtml = '';
 if (!$isIntegratedLayout && ($legalContentHtml !== '' || $detailsContentHtml !== '')) {
     ob_start();
     ?>
+
     <div class="ccctwoclick__block ccctwoclick__block--bar"
          data-ccctwoclick-block="bar"
          role="region"
@@ -43,6 +46,7 @@ if (!$isIntegratedLayout && ($legalContentHtml !== '' || $detailsContentHtml !==
             </div>
         <?php endif; ?>
     </div>
+
     <?php
     $barBlockHtml = trim(ob_get_clean());
 }
