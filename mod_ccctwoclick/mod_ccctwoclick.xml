@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.10.0" client="site" method="upgrade">
+<extension type="module" version="5.4.0" client="site" method="upgrade">
 	<name>mod_ccctwoclick</name>
-	<creationDate>06/2017</creationDate>
+	<scriptfile>script.php</scriptfile>
+	<creationDate>January 2026</creationDate>
 	<author>Elisa Foltyn</author>
-	<version>2.1-rc3</version>
-	<copyright>COOLCAT creations, Nürnberg - www.coolcat-creations.com</copyright>
+	<authorEmail>contact@coolcat-creations.com</authorEmail>
+	<authorUrl>https://coolcat-creations.com</authorUrl>
+	<version>3.0.0</version>
+	<copyright>COOLCAT creations - https://coolcat-creations.com</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>MOD_CCCTWOCLICK_DESC</description>
+	<changelogurl>https://github.com/coolcat-creations/mod_ccctwoclick/releases/latest/download/changelog.xml</changelogurl>
 	<files>
+		<filename>script.php</filename>
+		<filename>changelog.xml</filename>
 		<filename>mod_ccctwoclick.xml</filename>
 		<filename module="mod_ccctwoclick">mod_ccctwoclick.php</filename>
+		<folder>fields</folder>
 		<folder>tmpl</folder>
 		<folder>language</folder>
 	</files>
 	<media destination="mod_ccctwoclick" folder="media">
 		<folder>css</folder>
+		<folder>js</folder>
 	</media>
 	<config>
-		<fields name="params">
+		<fields name="params" addfieldpath="modules/mod_ccctwoclick/fields">
 			<fieldset
-					name="options"
-					label="MOD_CCCTWOCLICK_OPTIONS">
+					name="before"
+					label="MOD_CCCTWOCLICK_TAB_BEFORE">
 
 				<field
 						name="donationcode"
 						label="MOD_CCCTWOCLICK_DONATE"
-						type="spacer"
+						type="note"
 						showon="hidedonation:show"/>
-
 
 				<field
 						name="beforeclicksettings"
@@ -38,7 +45,7 @@
 				<field
 						name="disabledcolor"
 						label="MOD_CCCTWOCLICK_DISABLED_BGCOLOR_LBL"
-						desc="MOD_CCCTWOCLICK_DISABLED_BGCOLOR_DESC"
+						description="MOD_CCCTWOCLICK_DISABLED_BGCOLOR_DESC"
 						type="color"
 						default="transparent"
 				/>
@@ -46,11 +53,10 @@
 				<field
 						name="disabledimage"
 						label="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_LBL"
-						desc="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_DESC"
+						description="MOD_CCCTWOCLICK_DISABLED_BACKGROUND_DESC"
 						type="media"
 						default=""
 				/>
-
 
 				<field
 						name="backgroundsize"
@@ -59,66 +65,149 @@
 						default="auto"
 						class="inputbox chzn-color chzn-color-permissive"
 				>
-					<option value="">MOD_CCCTWOCLICK_SELECT</option>
-					<option value="auto">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_AUTO</option>
-					<option value="cover">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_COVER</option>
-					<option value="contain">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_CONTAIN</option>
+						<option value="">MOD_CCCTWOCLICK_SELECT</option>
+						<option value="auto">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_AUTO</option>
+						<option value="cover">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_COVER</option>
+						<option value="contain">MOD_CCCTWOCLICK_DISABLED_BACKGROUND_SIZE_CONTAIN</option>
 				</field>
+
+				<field
+						name="background_overlay_heading"
+						label="MOD_CCCTWOCLICK_BACKGROUND_OVERLAY_HEADING"
+						type="spacer"
+				/>
+
+				<field
+						name="background_overlay_enable"
+						label="MOD_CCCTWOCLICK_BACKGROUND_OVERLAY_ENABLE_LBL"
+						description="MOD_CCCTWOCLICK_BACKGROUND_OVERLAY_ENABLE_DESC"
+						type="radio"
+						default="0"
+						class="btn-group btn-group-yesno"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+						name="background_overlay_color"
+						label="MOD_CCCTWOCLICK_BACKGROUND_OVERLAY_COLOR_LBL"
+						description="MOD_CCCTWOCLICK_BACKGROUND_OVERLAY_COLOR_DESC"
+						type="color"
+						format="rgba"
+						alpha="true"
+						default="rgba(0,0,0,1)"
+						showon="background_overlay_enable:1"
+				/>
+
+				<field
+						name="background_overlay_blur"
+						label="MOD_CCCTWOCLICK_BACKGROUND_OVERLAY_BLUR_LBL"
+						description="MOD_CCCTWOCLICK_BACKGROUND_OVERLAY_BLUR_DESC"
+						type="number"
+						default="0"
+						min="0"
+						max="50"
+						step="1"
+						showon="background_overlay_enable:1"
+				/>
+
+
+			</fieldset>
+
+			<fieldset
+					name="privacy"
+					label="MOD_CCCTWOCLICK_TAB_PRIVACY">
+
+				<field
+						name="privacy_tab_intro"
+						type="note"
+						label=""
+						description="MOD_CCCTWOCLICK_PRIVACY_TAB_NOTE"
+						class="alert alert-info"
+				/>
+
+				<!-- ============================================
+				     Content & Consent Card Group
+				     ============================================ -->
+				<field
+						name="group_consent_content"
+						label="MOD_CCCTWOCLICK_GROUP_CONSENT_CONTENT"
+						description="MOD_CCCTWOCLICK_GROUP_CONSENT_CONTENT_DESC"
+						type="spacer"
+				/>
+
+				<field
+						name="privacy_heading_text"
+						label="MOD_CCCTWOCLICK_PRIVACY_HEADING_TEXT_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_HEADING_TEXT_DESC"
+						type="text"
+						default=""
+				/>
 
 				<field
 						name="contentbeforereplacement"
 						label="MOD_CCCTWOCLICK_DISABLED_CONTENT_LBL"
-						desc="MOD_CCCTWOCLICK_DISABLED_CONTENT_DESC"
+						description="MOD_CCCTWOCLICK_DISABLED_CONTENT_DESC"
 						type="textarea"
 						cols="50"
-						rows="10"
+						rows="6"
+						filter="safehtml"
 						default=""
 				/>
 
+				<field
+						name="contentafterreplacement"
+						label="MOD_CCCTWOCLICK_ENABLED_CONTENT_LBL"
+						description="MOD_CCCTWOCLICK_ENABLED_CONTENT_DESC"
+						type="textarea"
+						cols="50"
+						rows="6"
+						filter="safehtml"
+						default=""
+				/>
 
 				<field
-						name="displayprivacypolicy"
-						label="MOD_CCCTWOCLICK_DISPLAYPRIVACYLINK_LBL"
-						type="radio"
-						layout="joomla.form.field.radio.switcher"
-						default="0"
-				>
-					<option value="0">JNO</option>
-					<option value="1">JYES</option>
+						name="group_consent_control"
+						label="MOD_CCCTWOCLICK_GROUP_CONSENT_CONTROL"
+						type="spacer"
+				/>
 
+				<field
+						name="consent_control"
+						label="MOD_CCCTWOCLICK_CONSENT_CONTROL_LBL"
+						description="MOD_CCCTWOCLICK_CONSENT_CONTROL_DESC"
+						type="list"
+						default="toggle"
+				>
+					<option value="toggle">MOD_CCCTWOCLICK_CONSENT_CONTROL_TOGGLE</option>
+					<option value="button">MOD_CCCTWOCLICK_CONSENT_CONTROL_BUTTON</option>
 				</field>
 
 				<field
-						name="privacypolicy"
-						type="menuitem"
-						default=""
-						label="MOD_CCCTWOCLICK_PRIVACY_LINK_LBL"
-						description="MOD_CCCTWOCLICK_PRIVACY_LINK_DESC"
-						showon="displayprivacypolicy:1"
-				/>
-
-				<field
-						name="privacypolicytext"
-						label="MOD_CCCTWOCLICK_PRIVACYLINK_TXT_LBL"
+						name="privacy_toggle_label"
+						label="MOD_CCCTWOCLICK_PRIVACY_TOGGLE_LABEL_BEFORE"
+						description="MOD_CCCTWOCLICK_PRIVACY_TOGGLE_LABEL_DESC"
 						type="text"
-						default="MOD_CCCTWOCLICK_PRIVACYLINK_TXT"
-						showon="displayprivacypolicy:1"
+						default=""
+						showon="consent_control:toggle,both"
 				/>
 
 				<field
-						name="privacytextdesc"
-						label="MOD_CCCTWOCLICK_PRIVACYLINK_TXT_DESC"
-						type="spacer"
-						showon="displayprivacypolicy:1"
+						name="privacy_toggle_label_active"
+						label="MOD_CCCTWOCLICK_PRIVACY_TOGGLE_LABEL_AFTER"
+						description="MOD_CCCTWOCLICK_PRIVACY_TOGGLE_LABEL_ACTIVE_DESC"
+						type="text"
+						default=""
+						showon="consent_control:toggle,both"
 				/>
-
 
 				<field
 						name="buttontxtreveal"
 						label="MOD_CCCTWOCLICK_BTN_REVEAL"
 						type="text"
 						default=""
-
+						showon="consent_control:button,both"
 				/>
 
 				<field
@@ -126,70 +215,352 @@
 						label="MOD_CCCTWOCLICK_BTN_REVEAL_CLASS"
 						type="text"
 						default="btn btn-primary"
-
-				/>
-
-
-				<field
-						name="afterclicksettings"
-						label="MOD_CCCTWOCLICK_AFTERCLICK_SETTINGS"
-						type="spacer"
-				/>
-
-				<field
-						name="contentafterreplacement"
-						label="MOD_CCCTWOCLICK_ENABLED_CONTENT_LBL"
-						desc="MOD_CCCTWOCLICK_ENABLED_CONTENT_DESC"
-						type="textarea"
-						cols="50"
-						rows="10"
-						default=""
+						showon="consent_control:button,both"
 				/>
 
 				<field
 						name="buttontxtdisable"
-						label="MOD_CCCTWOCLICK_BTN_DISABLE"
+						label="MOD_CCCTWOCLICK_BTN_DISABLE_AFTER"
 						type="text"
 						default=""
+						showon="consent_control:button,both"
 				/>
-
 
 				<field
 						name="buttontxtdisableclass"
-						label="MOD_CCCTWOCLICK_BTN_DISABLE_CLASS"
+						label="MOD_CCCTWOCLICK_BTN_DISABLE_CLASS_AFTER"
 						type="text"
 						default="btn btn-secondary"
+						showon="consent_control:button,both"
 				/>
 
+				<!-- ============================================
+				     Privacy Policy Link Group
+				     ============================================ -->
 				<field
-						name="iframesettings"
-						label="MOD_CCCTWOCLICK_IFRAME_SETTINGS"
+						name="group_privacy_link"
+						label="MOD_CCCTWOCLICK_GROUP_PRIVACY_LINK"
+						description="MOD_CCCTWOCLICK_GROUP_PRIVACY_LINK_DESC"
 						type="spacer"
 				/>
 
 				<field
-						name="iframename"
-						label="MOD_CCCTWOCLICK_IFRAMENAME_LBL"
-						desc="MOD_CCCTWOCLICK_IFRAMENAME_DESC"
+						name="privacy_notice_text"
+						label="MOD_CCCTWOCLICK_PRIVACY_NOTICE_TEXT_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_NOTICE_TEXT_DESC"
+						type="textarea"
+						rows="3"
+						cols="40"
+				/>
+
+				<field
+						name="privacy_link_text"
+						label="MOD_CCCTWOCLICK_PRIVACY_LINK_TEXT_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_LINK_TEXT_DESC"
 						type="text"
 						default=""
 				/>
 
 				<field
-						name="iframetitle"
-						label="MOD_CCCTWOCLICK_IFRAMETITLE_LBL"
-						desc="MOD_CCCTWOCLICK_IFRAMETITLE_DESC"
+						name="privacy_link_url"
+						label="MOD_CCCTWOCLICK_PRIVACY_LINK_URL_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_LINK_URL_DESC"
+						type="linkpicker"
+						default=""
+						filter="raw"
+						relative="true"
+						edit="true"
+						clear="true"
+				/>
+
+
+				<!-- ============================================
+				     Extended Privacy Info Group
+				     ============================================ -->
+				<field
+						name="privacy_details_heading"
+						label="MOD_CCCTWOCLICK_PRIVACY_DETAILS_HEADING"
+						description="MOD_CCCTWOCLICK_EXTENDED_PRIVACY_INFO_DESC"
+						type="spacer"
+				/>
+
+				<field
+						name="extended_privacy_enable"
+						label="MOD_CCCTWOCLICK_EXTENDED_PRIVACY_ENABLE_LBL"
+						description="MOD_CCCTWOCLICK_EXTENDED_PRIVACY_ENABLE_DESC"
+						type="radio"
+						default="0"
+						class="btn-group btn-group-yesno"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+						name="privacy_details_toggle_label"
+						label="MOD_CCCTWOCLICK_PRIVACY_DETAILS_TOGGLE_SHOW_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_DETAILS_TOGGLE_SHOW_DESC"
 						type="text"
 						default=""
+						showon="extended_privacy_enable:1"
+				/>
+
+				<field
+						name="privacy_details_toggle_label_hide"
+						label="MOD_CCCTWOCLICK_PRIVACY_DETAILS_TOGGLE_HIDE_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_DETAILS_TOGGLE_HIDE_DESC"
+						type="text"
+						default=""
+						showon="extended_privacy_enable:1"
+				/>
+
+				<field
+						name="privacy_details_text"
+						label="MOD_CCCTWOCLICK_PRIVACY_DETAILS_TEXT_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_DETAILS_TEXT_DESC"
+						type="textarea"
+						cols="60"
+						rows="6"
+						filter="safehtml"
+						showon="extended_privacy_enable:1"
+				/>
+
+				<!-- ============================================
+				     Card & Bar Styling Group
+				     ============================================ -->
+				<field
+						name="group_card_styling"
+						label="MOD_CCCTWOCLICK_GROUP_CARD_STYLING"
+						description="MOD_CCCTWOCLICK_GROUP_CARD_STYLING_DESC"
+						type="spacer"
+				/>
+
+				<field
+						name="privacy_bar_layout"
+						label="MOD_CCCTWOCLICK_PRIVACY_BAR_LAYOUT_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_BAR_LAYOUT_DESC"
+						type="list"
+						default="separate"
+				>
+					<option value="separate">MOD_CCCTWOCLICK_PRIVACY_BAR_LAYOUT_SEPARATE</option>
+					<option value="integrated">MOD_CCCTWOCLICK_PRIVACY_BAR_LAYOUT_INTEGRATED</option>
+				</field>
+
+				<field
+						name="card_background_color"
+						label="MOD_CCCTWOCLICK_CARD_BGCOLOR_LBL"
+						description="MOD_CCCTWOCLICK_CARD_BGCOLOR_DESC"
+						type="color"
+						format="rgba"
+						alpha="true"
+						default="rgba(255,255,255,0.95)"
+				/>
+
+				<field
+						name="card_border_radius"
+						label="MOD_CCCTWOCLICK_CARD_BORDER_RADIUS_LBL"
+						description="MOD_CCCTWOCLICK_CARD_BORDER_RADIUS_DESC"
+						type="text"
+						default="0.85rem"
+				/>
+
+				<field
+						name="card_text_color"
+						label="MOD_CCCTWOCLICK_CARD_TEXT_COLOR_LBL"
+						description="MOD_CCCTWOCLICK_CARD_TEXT_COLOR_DESC"
+						type="color"
+						default=""
+				/>
+
+				<field
+						name="card_box_shadow"
+						label="MOD_CCCTWOCLICK_CARD_BOX_SHADOW_LBL"
+						description="MOD_CCCTWOCLICK_CARD_BOX_SHADOW_DESC"
+						type="text"
+						default="0 14px 28px rgba(15, 23, 42, 0.16)"
+				/>
+
+				<field
+						name="bar_background_color"
+						label="MOD_CCCTWOCLICK_BAR_BGCOLOR_LBL"
+						description="MOD_CCCTWOCLICK_BAR_BGCOLOR_DESC"
+						type="color"
+						format="rgba"
+						alpha="true"
+						default="rgba(255,255,255,0.7)"
+						showon="privacy_bar_layout:separate"
+				/>
+
+				<field
+						name="bar_border_radius"
+						label="MOD_CCCTWOCLICK_BAR_BORDER_RADIUS_LBL"
+						description="MOD_CCCTWOCLICK_BAR_BORDER_RADIUS_DESC"
+						type="text"
+						default="0.65rem"
+						showon="privacy_bar_layout:separate"
+				/>
+
+				<field
+						name="bar_text_color"
+						label="MOD_CCCTWOCLICK_BAR_TEXT_COLOR_LBL"
+						description="MOD_CCCTWOCLICK_BAR_TEXT_COLOR_DESC"
+						type="color"
+						default=""
+						showon="privacy_bar_layout:separate"
+				/>
+
+				<field
+						name="bar_box_shadow"
+						label="MOD_CCCTWOCLICK_BAR_BOX_SHADOW_LBL"
+						description="MOD_CCCTWOCLICK_BAR_BOX_SHADOW_DESC"
+						type="text"
+						default="none"
+						showon="privacy_bar_layout:separate"
+				/>
+
+				<!-- ============================================
+				     Card & Bar Placement Group
+				     ============================================ -->
+				<field
+						name="group_card_position"
+						label="MOD_CCCTWOCLICK_GROUP_CARD_POSITION"
+						description="MOD_CCCTWOCLICK_GROUP_CARD_POSITION_DESC"
+						type="spacer"
+				/>
+
+				<field
+						name="contentbeforepos"
+						label="MOD_CCCTWOCLICK_CONTENTBEFOREPOS_LBL"
+						description="MOD_CCCTWOCLICK_CONTENTBEFOREPOS_DESC"
+						type="list"
+						default="center"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+					<option value="">MOD_CCCTWOCLICK_SELECT</option>
+					<option value="top">MOD_CCCTWOCLICK_PRIVACY_POSITION_TOP</option>
+					<option value="center">MOD_CCCTWOCLICK_PRIVACY_POSITION_OVERLAY</option>
+					<option value="bottom">MOD_CCCTWOCLICK_PRIVACY_POSITION_BOTTOM</option>
+				</field>
+
+				<field
+						name="contentafterpos"
+						label="MOD_CCCTWOCLICK_CONTENTAFTERPOS_LBL"
+						description="MOD_CCCTWOCLICK_CONTENTAFTERPOS_DESC"
+						type="list"
+						default="top"
+						class="inputbox chzn-color chzn-color-permissive"
+				>
+					<option value="">MOD_CCCTWOCLICK_SELECT</option>
+					<option value="top">MOD_CCCTWOCLICK_PRIVACY_POSITION_TOP</option>
+					<option value="bottom">MOD_CCCTWOCLICK_PRIVACY_POSITION_BOTTOM</option>
+				</field>
+
+				<field
+						name="privacy_bar_position_before"
+						label="MOD_CCCTWOCLICK_PRIVACY_BAR_POSITION_BEFORE_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_BAR_POSITION_BEFORE_DESC"
+						type="list"
+						default="bottom"
+						showon="privacy_bar_layout:separate"
+				>
+					<option value="top">MOD_CCCTWOCLICK_PRIVACY_POSITION_TOP</option>
+					<option value="overlay">MOD_CCCTWOCLICK_PRIVACY_POSITION_OVERLAY</option>
+					<option value="bottom">MOD_CCCTWOCLICK_PRIVACY_POSITION_BOTTOM</option>
+					<option value="none">MOD_CCCTWOCLICK_PRIVACY_POSITION_NONE</option>
+				</field>
+
+				<field
+						name="privacy_bar_position_after"
+						label="MOD_CCCTWOCLICK_PRIVACY_BAR_POSITION_AFTER_LBL"
+						description="MOD_CCCTWOCLICK_PRIVACY_BAR_POSITION_AFTER_DESC"
+						type="list"
+						default="bottom"
+						showon="privacy_bar_layout:separate"
+				>
+					<option value="top">MOD_CCCTWOCLICK_PRIVACY_POSITION_TOP</option>
+					<option value="bottom">MOD_CCCTWOCLICK_PRIVACY_POSITION_BOTTOM</option>
+					<option value="none">MOD_CCCTWOCLICK_PRIVACY_POSITION_NONE</option>
+				</field>
+
+			</fieldset>
+
+			<fieldset
+					name="iframe"
+					label="MOD_CCCTWOCLICK_TAB_IFRAME">
+
+				<field
+						name="iframe_tab_intro"
+						type="note"
+						label=""
+						description="MOD_CCCTWOCLICK_IFRAME_TAB_NOTE"
+						class="alert alert-warning"
+				/>
+
+				<field
+						name="iframesourceheading"
+						label="MOD_CCCTWOCLICK_IFRAME_SOURCE_HEADING"
+						type="spacer"
 				/>
 
 				<field
 						name="sourceurl"
 						label="MOD_CCCTWOCLICK_SOURCE_URL"
+						description="MOD_CCCTWOCLICK_SOURCE_URL_DESC"
 						type="text"
 						default=""
-						filter="url"
+						filter="raw"
+						hint="https://www.youtube.com/embed/..."
 				/>
+
+				<field
+						name="iframetitle"
+						label="MOD_CCCTWOCLICK_IFRAMETITLE_LBL"
+						description="MOD_CCCTWOCLICK_IFRAMETITLE_DESC"
+						type="text"
+						default=""
+				/>
+
+				<field
+						name="iframename"
+						label="MOD_CCCTWOCLICK_IFRAMENAME_LBL"
+						description="MOD_CCCTWOCLICK_IFRAMENAME_DESC"
+						type="text"
+						default=""
+				/>
+
+				<field
+						name="iframesizeheading"
+						label="MOD_CCCTWOCLICK_IFRAME_SIZE_HEADING"
+						type="spacer"
+				/>
+
+				<field
+						name="responsivevideo"
+						label="MOD_CCCTWOCLICK_RESPONSIVE_VIDEO_LBL"
+						description="MOD_CCCTWOCLICK_RESPONSIVE_VIDEO_DESC"
+						type="radio"
+						default="1"
+						class="btn-group btn-group-yesno"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+						name="responsive_ratio"
+						label="MOD_CCCTWOCLICK_RESPONSIVE_RATIO_LBL"
+						description="MOD_CCCTWOCLICK_RESPONSIVE_RATIO_DESC"
+						type="list"
+						default="16:9"
+						showon="responsivevideo:1"
+				>
+					<option value="16:9">16:9 (YouTube, Vimeo)</option>
+					<option value="4:3">4:3</option>
+					<option value="21:9">21:9 (Ultrawide)</option>
+					<option value="1:1">1:1 (Square)</option>
+					<option value="9:16">9:16 (Vertical/Shorts)</option>
+					<option value="custom">MOD_CCCTWOCLICK_RESPONSIVE_RATIO_CUSTOM</option>
+				</field>
 
 				<field
 						name="iframewidth"
@@ -203,7 +574,13 @@
 						label="MOD_CCCTWOCLICK_IFRAMEHEIGHT_LBL"
 						type="text"
 						default="300px"
+						showon="responsivevideo:0[OR]responsive_ratio:custom"
+				/>
 
+				<field
+						name="iframeattributesheading"
+						label="MOD_CCCTWOCLICK_IFRAME_ATTRIBUTES_HEADING"
+						type="spacer"
 				/>
 
 				<field
@@ -222,7 +599,7 @@
 				>
 					<option value="">MOD_CCCTWOCLICK_SELECT</option>
 					<option value="true">JYES</option>
-					<option value="8">JNO</option>
+					<option value="false">JNO</option>
 				</field>
 
 				<field
@@ -249,60 +626,72 @@
 					<option value="no">JNO</option>
 				</field>
 
+			</fieldset>
+
+
+			<fieldset
+					name="behaviour"
+					label="MOD_CCCTWOCLICK_TAB_BEHAVIOUR">
+
 				<field
-						name="positionsetting"
-						label="MOD_CCCTWOCLICK_POSITION_SETTINGS"
-						type="spacer"
+						name="video_autoplay"
+						label="MOD_CCCTWOCLICK_VIDEO_AUTOPLAY_LBL"
+						description="MOD_CCCTWOCLICK_VIDEO_AUTOPLAY_DESC"
+						type="radio"
+						default="0"
+						class="btn-group btn-group-yesno"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+						name="load_delay"
+						type="number"
+						label="MOD_CCCTWOCLICK_LOAD_DELAY_LBL"
+						description="MOD_CCCTWOCLICK_LOAD_DELAY_DESC"
+						default="600"
+						min="0"
+						max="3000"
+						step="50"
 				/>
 
 				<field
-						name="contentbeforepos"
-						label="MOD_CCCTWOCLICK_CONTENTBEFOREPOS_LBL"
-						type="list"
-						default="bottom"
-						class="inputbox chzn-color chzn-color-permissive"
+						name="store_consent"
+						type="radio"
+						label="MOD_CCCTWOCLICK_STORE_CONSENT_LABEL"
+						description="MOD_CCCTWOCLICK_STORE_CONSENT_DESC"
+						default="1"
+						class="btn-group btn-group-yesno"
 				>
-					<option value="">MOD_CCCTWOCLICK_SELECT</option>
-					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
-					<option value="center">MOD_CCCTWOCLICK_POS_CENTER</option>
-					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
 
 				<field
-						name="contentafterpos"
-						label="MOD_CCCTWOCLICK_CONTENTAFTERPOS_LBL"
+						name="consent_scope"
+						label="MOD_CCCTWOCLICK_CONSENT_SCOPE_LABEL"
+						description="MOD_CCCTWOCLICK_CONSENT_SCOPE_DESC"
 						type="list"
-						default="bottom"
-						class="inputbox chzn-color chzn-color-permissive"
+						default="domain"
+						showon="store_consent:1"
 				>
-					<option value="">MOD_CCCTWOCLICK_SELECT</option>
-					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
-					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
+					<option value="module">MOD_CCCTWOCLICK_CONSENT_SCOPE_MODULE</option>
+					<option value="domain">MOD_CCCTWOCLICK_CONSENT_SCOPE_DOMAIN</option>
+					<option value="global">MOD_CCCTWOCLICK_CONSENT_SCOPE_GLOBAL</option>
 				</field>
 
 				<field
-						name="btnrevpos"
-						label="MOD_CCCTWOCLICK_BTNREVPOS_LBL"
-						type="list"
-						default="bottom"
-						class="inputbox chzn-color chzn-color-permissive"
+						name="remember_across_sessions"
+						type="radio"
+						label="MOD_CCCTWOCLICK_REMEMBER_SESSIONS_LABEL"
+						description="MOD_CCCTWOCLICK_REMEMBER_SESSIONS_DESC"
+						default="0"
+						class="btn-group btn-group-yesno"
+						showon="store_consent:1"
 				>
-					<option value="">MOD_CCCTWOCLICK_SELECT</option>
-					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
-					<option value="center">MOD_CCCTWOCLICK_POS_CENTER</option>
-					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
-				</field>
-
-				<field
-						name="btndispos"
-						label="MOD_CCCTWOCLICK_BTNDISPOS_LBL"
-						type="list"
-						default="bottom"
-						class="inputbox chzn-color chzn-color-permissive"
-				>
-					<option value="">MOD_CCCTWOCLICK_SELECT</option>
-					<option value="top">MOD_CCCTWOCLICK_POS_TOP</option>
-					<option value="bottom">MOD_CCCTWOCLICK_POS_BOTTOM</option>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
 
 				<field
@@ -317,7 +706,16 @@
 					<option value="no">JNO</option>
 				</field>
 
+				<field
+						name="a11y_region_label"
+						label="MOD_CCCTWOCLICK_A11Y_REGION_TEXT_LBL"
+						description="MOD_CCCTWOCLICK_A11Y_REGION_TEXT_DESC"
+						type="text"
+						default=""
+				/>
+
 			</fieldset>
+
 
 			<fieldset name="advanced">
 
@@ -327,8 +725,8 @@
 						type="radio"
 						default="show"
 				>
-					<option value="show">JNO</option>
-					<option value="hide">JYES</option>
+						<option value="show">JNO</option>
+						<option value="hide">JYES</option>
 				</field>
 
 				<field
@@ -337,6 +735,14 @@
 						type="textarea"
 						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
 						rows="3"
+				/>
+
+				<field
+						name="layout"
+						type="modulelayout"
+						label="JFIELD_ALT_LAYOUT_LABEL"
+						class="form-select"
+						validate="moduleLayout"
 				/>
 
 			</fieldset>
@@ -353,9 +759,7 @@
 	</languages>
 
 	<updateservers>
-		<server type="extension" name="mod_ccctwoclick Update Site">
-			https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/master/manifest.xml
-		</server>
+		<server type="extension" name="mod_ccctwoclick Update Site">https://github.com/coolcat-creations/mod_ccctwoclick/releases/latest/download/update.xml</server>
 	</updateservers>
 
 </extension>
