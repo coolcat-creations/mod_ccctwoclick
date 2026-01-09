@@ -24,5 +24,9 @@
 			<item>Legacy privacy link params (displayprivacypolicy, privacypolicy, privacypolicytext) replaced by the new privacy link fields.</item>
 			<item>Legacy button position settings for reveal/disable controls in favor of the privacy card layout.</item>
 		</remove>
+		<note>
+			<item>Major update: requires Joomla 5.4+.</item>
+			<item>Backup your site before upgrading.</item>
+		</note>
 	</changelog>
 </changelogs>
