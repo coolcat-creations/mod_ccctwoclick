@@ -4,6 +4,8 @@
  * @subpackage  mod_ccctwoclick
  *
  * Inline CSS for the CCC Two Click template (used when stylesheet is disabled).
+ *
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('_JEXEC') or die;
 

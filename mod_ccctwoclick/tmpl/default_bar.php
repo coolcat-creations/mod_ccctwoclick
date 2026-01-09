@@ -4,6 +4,8 @@
  * @subpackage  mod_ccctwoclick
  *
  * Privacy bar block generation for the CCC Two Click template.
+ *
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('_JEXEC') or die;
 

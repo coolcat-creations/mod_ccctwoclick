@@ -4,11 +4,13 @@
 	<scriptfile>script.php</scriptfile>
 	<creationDate>January 2026</creationDate>
 	<author>Elisa Foltyn</author>
+	<authorEmail>contact@coolcat-creations.com</authorEmail>
+	<authorUrl>https://coolcat-creations.com</authorUrl>
 	<version>3.0.0</version>
 	<copyright>COOLCAT creations - https://coolcat-creations.com</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>MOD_CCCTWOCLICK_DESC</description>
-	<changelog>changelog.xml</changelog>
+	<changelogurl>https://github.com/coolcat-creations/mod_ccctwoclick/releases/latest/download/changelog.xml</changelogurl>
 	<files>
 		<filename>script.php</filename>
 		<filename>changelog.xml</filename>

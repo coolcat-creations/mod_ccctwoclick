@@ -11,6 +11,8 @@
  * - default_card.php       : Privacy card block generation
  * - default_bar.php        : Privacy bar block generation
  * - default_inline_css.php : Inline CSS (when external stylesheet is disabled)
+ *
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('_JEXEC') or die;
 

@@ -3,6 +3,8 @@
  * Installer script for mod_ccctwoclick
  *
  * Blocks installation on Joomla versions lower than 5.4.
+ *
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;

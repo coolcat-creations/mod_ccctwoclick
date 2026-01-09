@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<changelog>
-	<release version="3.0.0" date="2026-01-04">
-		<section name="Added">
+<changelogs>
+	<changelog>
+		<element>mod_ccctwoclick</element>
+		<type>module</type>
+		<version>3.0.0</version>
+		<addition>
 			<item>Installer script to require Joomla 5.4+ and migrate legacy params (privacy link fields, allowfullscreen false value, overlay position).</item>
 			<item>Privacy card and privacy bar UI with configurable placement, integrated or separate layout, and style controls (colors, radius, shadows).</item>
 			<item>Consent controls: toggle/button/both, load delay, consent scope (module/domain/global), session or local storage, and YouTube/Vimeo autoplay.</item>
 			<item>Responsive video container with ratio presets, background overlay color/blur controls, and region label override for accessibility.</item>
 			<item>Link picker field to select privacy links from articles or menu items.</item>
 			<item>Modular template partials (helpers, variables, card, bar, inline CSS) and dedicated JS asset for behavior.</item>
-		</section>
-		<section name="Changed">
+		</addition>
+		<change>
 			<item>Template markup restructured with BEM classes and data attributes; behavior moved from inline scripts to the JS asset.</item>
 			<item>CSS rewritten to style placeholders, cards, bars, toggle control, and reduced-motion handling.</item>
 			<item>iFrame source handling now accepts embed codes, normalizes protocol-relative/relative URLs, validates URLs, and uses a fallback title.</item>
 			<item>Parameter UI reorganized into tabs (Before, Privacy, iFrame, Behaviour, Advanced) with updated help text and translations.</item>
 			<item>Update server URL moved to GitHub releases; manifest metadata updated for version 3.0.0.</item>
 			<item>Donation message and module description text updated.</item>
-		</section>
-		<section name="Removed">
+		</change>
+		<remove>
 			<item>Legacy privacy link params (displayprivacypolicy, privacypolicy, privacypolicytext) replaced by the new privacy link fields.</item>
 			<item>Legacy button position settings for reveal/disable controls in favor of the privacy card layout.</item>
-		</section>
-	</release>
-</changelog>
+		</remove>
+	</changelog>
+</changelogs>
