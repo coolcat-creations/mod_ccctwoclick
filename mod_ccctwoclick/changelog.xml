@@ -3,6 +3,14 @@
 	<changelog>
 		<element>mod_ccctwoclick</element>
 		<type>module</type>
+		<version>3.0.1</version>
+		<fix>
+			<item>URL validation now uses parse_url() instead of filter_var() to support URLs with special characters (e.g., Google Maps embed URLs with exclamation marks in query parameters).</item>
+		</fix>
+	</changelog>
+	<changelog>
+		<element>mod_ccctwoclick</element>
+		<type>module</type>
 		<version>3.0.0</version>
 		<addition>
 			<item>Installer script to require Joomla 5.4+ and migrate legacy params (privacy link fields, allowfullscreen false value, overlay position).</item>

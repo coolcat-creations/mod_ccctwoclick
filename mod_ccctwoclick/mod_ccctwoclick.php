@@ -110,8 +110,14 @@ if ($source !== '') {
 	}
 }
 
-if ($source !== '' && !filter_var($source, FILTER_VALIDATE_URL)) {
-	$source = '';
+if ($source !== '') {
+	$parsed = parse_url($source);
+	$scheme = isset($parsed['scheme']) ? strtolower($parsed['scheme']) : '';
+	$host   = isset($parsed['host']) ? $parsed['host'] : '';
+
+	if (!in_array($scheme, ['http', 'https'], true) || $host === '') {
+		$source = '';
+	}
 }
 
 $iframetitle              = $params->get('iframetitle', '');

@@ -6,11 +6,11 @@
 	<author>Elisa Foltyn</author>
 	<authorEmail>contact@coolcat-creations.com</authorEmail>
 	<authorUrl>https://coolcat-creations.com</authorUrl>
-	<version>3.0.0</version>
+	<version>3.0.1</version>
 	<copyright>COOLCAT creations - https://coolcat-creations.com</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>MOD_CCCTWOCLICK_DESC</description>
-	<changelogurl>https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/tags/v3.0.0/changelog.xml</changelogurl>
+	<changelogurl>https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/tags/v3.0.1/changelog.xml</changelogurl>
 	<files>
 		<filename>script.php</filename>
 		<filename>changelog.xml</filename>
@@ -759,7 +759,7 @@
 	</languages>
 
 	<updateservers>
-		<server type="extension" name="mod_ccctwoclick Update Site">https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/tags/v3.0.0/update.xml</server>
+		<server type="extension" name="mod_ccctwoclick Update Site">https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/tags/v3.0.1/update.xml</server>
 	</updateservers>
 
 </extension>
