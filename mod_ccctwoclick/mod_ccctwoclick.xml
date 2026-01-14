@@ -10,7 +10,7 @@
 	<copyright>COOLCAT creations - https://coolcat-creations.com</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>MOD_CCCTWOCLICK_DESC</description>
-	<changelogurl>https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/tags/v3.0.1/changelog.xml</changelogurl>
+	<changelogurl>https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/heads/master/mod_ccctwoclick/changelog.xml</changelogurl>
 	<files>
 		<filename>script.php</filename>
 		<filename>changelog.xml</filename>
@@ -758,8 +758,8 @@
 		<language tag="de-DE">de-DE/de-DE.mod_ccctwoclick.sys.ini</language>
 	</languages>
 
-	<updateservers>
-		<server type="extension" name="mod_ccctwoclick Update Site">https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/tags/v3.0.1/update.xml</server>
-	</updateservers>
+		<updateservers>
+			<server type="extension" name="mod_ccctwoclick Update Site">https://raw.githubusercontent.com/coolcat-creations/mod_ccctwoclick/refs/heads/master/update.xml</server>
+		</updateservers>
 
 </extension>
